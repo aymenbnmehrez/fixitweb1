@@ -1,0 +1,160 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a class="logo" href="#">
+                        {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                    </a>
+                </div>
+
+            </div>
+            <div class="pull-right">
+                <a href="/fixit/web/app_dev.php/logout"><button class="btn btn-primary btn-lg  "  > <span class="glyphicon glyphicon-log-out" ></span> Logout</button></a>
+            </div>
+        </div>
+
+        <!-- header -->
+    </div>
+    <!-- container -->
+{% endblock %}
+{% block body %}
+    <div id="navigation">
+        <!-- container -->
+        <div class="container">
+            <div id="responsive-nav">
+                <!-- category nav -->
+                <div class="category-nav">
+                    <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                    <ul class="category-list">
+                        <li class="dropdown side-dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ad<i class="fa fa-angle-right"></i></a>
+                            <div class="custom-menu">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ul class="list-links">
+                                            <li>
+                                                <h3 class="list-links-title">Option</h3></li>
+                                            <li><a href="#">Add a ad</a></li>
+                                            <li><a href="#">My Ads</a></li>
+                                        </ul>
+                                        <hr class="hidden-md hidden-lg">
+                                    </div>
+
+                                </div>
+                                <div class="row hidden-sm hidden-xs">
+                                    <div class="col-md-12">
+                                        <hr>
+                                        <a class="banner banner-1" href="#">
+                                            <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                            <div class="banner-caption text-center">
+                                                <h2 class="white-color">NEW COLLECTION</h2>
+                                                <h3 class="white-color font-weak">HOT DEAL</h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li><a href="{{path('provider_searchjob')}}">Search for a job</a></li>
+                        <li><a href="{{path('provider_jobrequests')}}">My job requests</a></li>
+                        <li><a href="#">Forum</a></li>
+
+                    </ul>
+                </div>
+                <!-- /category nav -->
+                <div class="menu-nav">
+                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                    <ul class="menu-list">
+                        <li><a href="{{path('fixit_homepage')}}">Home</a></li>
+                        <li><a href="{{path('provider_profilepage')}}">Profile</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact us</a></li>
+
+                    </ul>
+                </div>
+                <!-- menu nav -->
+                <!-- menu nav -->
+            </div>
+        </div>
+        <!-- /container -->
+        {#    </div>#}
+        {#    <!-- /NAVIGATION -->#}
+    </div>
+    <li><a href="{{path('fos_user_profile_edit')}}"><button class="btn btn-outline-primary btn-lg bt"><span class="glyphicon glyphicon-cog" ></span> EDIT YOUR INFORMATION</button></a></li>
+    <div class="page-header page-header-small couv" filter-color="green">
+        <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('profile/images/cc-bg-1.jpg')}}');"></div>
+        <div class="container">
+                        <div class="content-center">
+                            <div class="cc-profile-image"><a href="{{path('provider_setImagepage')}}">
+                                    {% if i==null %}
+                                        <img src="{{ asset('admin/img/photo.jpg')}}" alt="Image"/>
+                                    {% else %}
+                                    <img src="{{ asset('fixit/public/uploads/')~i.image}}" alt="Image"/>
+                                    {% endif %}
+                                </a></div>
+                            <div class="h2 title">{{ u.first_name }}  {{ u.last_name}}
+                                {% if u.status == 'Confirmed' %}
+                                <span class="glyphicon glyphicon-ok-sign" ></span>
+                                {% endif %}
+                                </p> </div>
+                        </div>
+                    </div>
+     </div>
+{#    <center>#}
+{#    <div class="couve" style="background-image: url('{{ asset('admin/img/couvert3.jpg')}}');">#}
+{#        <div class="container">#}
+{#            <div class="content-center">#}
+{#                <div class="cc-profile-image imgc"><a href="{{path('provider_setImagepage')}}">#}
+{#                        {% if i==null %}#}
+{#                            <img src="{{ asset('admin/img/photo.jpg')}}" alt="Image"/>#}
+{#                        {% else %}#}
+{#                            <img src="{{ asset('fixit/public/uploads/')~i.image}}" alt="Image"/>#}
+{#                        {% endif %}#}
+{#                    </a></div>#}
+{#                <div class="h2 title">{{ u.first_name }}  {{ u.last_name}}</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    </center>#}
+
+    <div class="blockk esp">
+          <h2>Mail :</h2><p>{{ u.email }}</p>
+      </div>
+    <div class="blockk esp2">
+        <h2>Bio :</h2><p>{{ u.bio }}</p>
+    </div> <div class="blockk esp2">
+    <h2>Phone number :</h2><p>{{ u.phone }}</p>
+</div>
+
+<style>
+    .esp{
+margin-top:8%;
+    }
+    .esp2{
+        margin-top:4%;
+    }
+    .blockk{
+        width:400px;
+        margin-left: 5%;
+    }
+    .bt{
+        margin-top: 15px;
+        margin-left: 85%;
+    }
+
+    .couv{
+        margin-top: 1%;
+
+    }
+    .glyphicon-ok-sign{
+        color: #0000F0;
+    }
+</style>
+
+
+{% endblock %}

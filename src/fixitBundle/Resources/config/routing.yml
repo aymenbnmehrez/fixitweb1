@@ -1,0 +1,53 @@
+fixit_homepage:
+    path:     /
+    defaults: { _controller: fixitBundle:Default:index }
+
+#fixit_signin:
+#    path:     /login
+#    defaults: { _controller:fixitBundle:Auth:singin }
+admin_homepage:
+    path:     /category
+    defaults: { _controller: fixitBundle:Admin:homeAdmin }
+delete_category:
+    path:     /delete/{id}
+    defaults: { _controller: fixitBundle:Admin:deleteCategory }
+update_category:
+    path:     /update/{id}
+    defaults: { _controller: fixitBundle:Admin:UpdateCategory }
+add_category:
+    path:     /Add
+    defaults: { _controller: fixitBundle:Admin:AddCategory }
+add_service:
+    path:     /Addservice
+    defaults: { _controller: fixitBundle:Admin:AddService }
+affiche_service:
+    path:     /Afficheservice/{id}
+    defaults: { _controller: fixitBundle:Admin:afficheService }
+delete_service:
+    path:     /deleteservice/{id}
+    defaults: { _controller: fixitBundle:Admin:deleteService }
+update_service:
+    path:     /updateservice/{id}
+    defaults: { _controller: fixitBundle:Admin:UpdateService }
+#charts:
+#    path:     /stat
+#    defaults: { _controller: fixitBundle:Stat:Stat }
+
+
+admin_showad:
+    path:     /showAllAd
+    defaults: { _controller: fixitBundle:Default:showAllAd }
+
+admin_deletead:
+    path:     /deleteAd{ad_id}
+    defaults: { _controller: fixitBundle:Default:deleteAd }
+
+charts:
+    path:     /stat
+    defaults: { _controller: fixitBundle:Stat:Stat }
+admin_checkProvider:
+    path:     /checkProvider
+    defaults: { _controller: fixitBundle:CheckProvider:checkProvider }
+admin_confirmProvider:
+    path:     /confirmProvider/{id}
+    defaults: { _controller: fixitBundle:CheckProvider:confirmProvider }

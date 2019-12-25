@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+
+        <link href="{{ asset('fixit/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('fixit/css/slick.css') }}" rel="stylesheet">
+        <link href="{{ asset('fixit/css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('fixit/css/nouislider.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('fixit/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('fixit/css/slick-theme.css') }}" rel="stylesheet">
+    {% endblock %}
+
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <div class="pull-left">
+            <!-- Logo -->
+            <div class="header-logo">
+                <a class="logo" href="#">
+                    {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                </a>
+            </div>
+
+        </div>
+        <div class="pull-right">
+            <a href="/fixit/web/app_dev.php/logout"><button class="btn btn-primary btn-lg  "  > <span class="glyphicon glyphicon-log-out" ></span> Logout</button></a>
+        </div>
+    </div>
+
+    <!-- header -->
+</div>
+<div id="navigation">
+    <!-- container -->
+    <div class="container">
+        <div id="responsive-nav">
+            <!-- category nav -->
+            <div class="category-nav">
+                <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                <ul class="category-list">
+                    <li class="dropdown side-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ask for a service<i class="fa fa-angle-right"></i></a>
+                        <div class="custom-menu">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <ul class="list-links">
+                                        <li>
+                                            <h3 class="list-links-title">Option</h3></li>
+                                        <li><a href="{{path('client_addAskService')}}">Add a request</a></li>
+                                        <li><a href="{{path('client_displayservice')}}">My request</a></li>
+                                    </ul>
+                                    <hr class="hidden-md hidden-lg">
+                                </div>
+
+                            </div>
+                            <div class="row hidden-sm hidden-xs">
+                                <div class="col-md-12">
+                                    <hr>
+                                    <a class="banner banner-1" href="#">
+                                        <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                        <div class="banner-caption text-center">
+                                            <h2 class="white-color">NEW COLLECTION</h2>
+                                            <h3 class="white-color font-weak">HOT DEAL</h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#">Forum</a></li>
+
+                </ul>
+            </div>
+            <!-- /category nav -->
+
+            <!-- menu nav -->
+            <div class="menu-nav">
+                <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                <ul class="menu-list">
+                    <li><a href="{{path('fixit_homepage')}}">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact us</a></li>
+
+                </ul>
+            </div>
+            <!-- menu nav -->
+
+        </div>
+    </div>
+    <!-- /container -->
+    {#    </div>#}
+    {#    <!-- /NAVIGATION -->#}
+</div>
+<center>
+<form class="pay" method="post" id="payment-form">
+    <div class="form-row">
+        <label for="card-element">
+            Credit or debit card
+        </label>
+
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display Element errors. -->
+        <div id="card-errors" role="alert"></div>
+    </div>
+    <button class="btn-primary btn-lg">Submit Payment {{ price }} $</button>
+
+</form>
+</center>
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    var stripe = Stripe('pk_test_6AJ3qCYVJOyyDDcDbKpH4Rp400GhTZQT8e');
+    var elements = stripe.elements();
+    var style = {
+        base: {
+            color: '#32325d',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#aab7c4'
+            }
+        },
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+
+
+
+
+
+    };
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
+
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                // Inform the customer that there was an error.
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Send the token to your server.
+                stripeTokenHandler(result.token);
+            }
+        });
+    });
+    function stripeTokenHandler(token) {
+        // Insert the token ID into the form so it gets submitted to the server
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
+
+        // Submit the form
+        form.submit();
+    }
+</script>
+<style>
+    .pay{
+        margin-top: 10%;
+        width: 400px;
+    }
+    .btn-lg{
+        margin-top: 2%;
+    }
+</style>
+<style>
+    .StripeElement {
+        box-sizing: border-box;
+
+        height: 40px;
+
+        padding: 10px 12px;
+
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background-color: white;
+
+        box-shadow: 0 1px 3px 0 #e6ebf1;
+        -webkit-transition: box-shadow 150ms ease;
+        transition: box-shadow 150ms ease;
+    }
+
+    .StripeElement--focus {
+        box-shadow: 0 1px 3px 0 #cfd7df;
+    }
+
+    .StripeElement--invalid {
+        border-color: #fa755a;
+    }
+
+    .StripeElement--webkit-autofill {
+        background-color: #fefde5 !important;
+    }
+</style>
+</body>
+</html>

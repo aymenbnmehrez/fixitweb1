@@ -1,0 +1,115 @@
+{% extends 'admin.html.twig' %}
+
+{% block content %}
+    <script>
+        function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("recherche");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("recherchetable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    <div id="page-wrapper" >
+    <div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Welcome Admin , Love to see you back, here you can check all Categories !! </h5>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+    <hr/>
+    <div class="row">
+    <div class="col-md-12">
+    <!-- Advanced Tables -->
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        Show Categories
+    </div>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+
+
+            <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search" id="recherche" onkeyup="myFunction()">
+
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+            <table class="table table-bordered table-striped" id="recherchetable">
+                <thead>
+                <tr>
+
+                    <th>Name</th>
+
+
+                    <th>Description</th>
+                    <th>picture </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in Category %}
+                    <tr>
+
+                        <td>{{ i.name}}</td>
+                        <td>{{ i.description}}</td>
+                        <td>
+
+                        <img src="{{ asset('fixit/public/uploads/')~i.image}}" alt="message user image" class="direct-chat-img imgCat container" ></td>
+                        <td><a href="{{ path ('delete_category',{'id':i.getCategoryId()}) }}">
+                                <button type="button" class="btn btn-primary">
+                                                                        <i class="fas fa-minus-circle"></i> Delete
+                                                                    </button></a></td>
+
+                        <td><a href="{{ path('update_category',{'id':i.getCategoryId()}) }}">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fas fa-minus-circle"></i> update
+                                </button></a></td>
+                        <td><a href="{{ path('affiche_service',{'id':i.getCategoryId()}) }}">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fas fa-minus-circle"></i> Services
+                                </button></a></td>
+                    </tr>
+
+                {% endfor %}
+                <style>
+                    .imgCat{
+                        margin-left: 5%;
+                        margin-right: 5%;
+                        width: 400px;
+                        height: 200px;
+                    }
+                </style>
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+
+        <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+        </script>
+
+{% endblock %}

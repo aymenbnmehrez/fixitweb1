@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+
+
+
+
+
+    <!-- HEADER -->
+
+    <!-- /HEADER -->
+
+
+    <!-- section -->
+    <div class="section">
+
+        <div class="container">
+
+            <div class="row">
+                {% for i in Category %}
+
+
+
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="product product-single">
+                        <div class="product-thumb">
+                            <<a href="{{ path('client_addAskService',{'id':i.getCategoryId()}) }}">
+                                <button class="main-btn quick-view"><i class="fa fa-search-plus"></i>Services</button></a>
+                            <img src="{{ asset('fixit/public/uploads/')~i.image}}" alt="message user image" class="direct-chat-img imgCat container" >
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-price">{{ i.name}}</h3>
+{#                            <div class="product-rating">#}
+{#                                <i class="fa fa-star"></i>#}
+{#                                <i class="fa fa-star"></i>#}
+{#                                <i class="fa fa-star"></i>#}
+{#                                <i class="fa fa-star"></i>#}
+{#                                <i class="fa fa-star-o empty"></i>#}
+{#                            </div>#}
+
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+{% endblock %}

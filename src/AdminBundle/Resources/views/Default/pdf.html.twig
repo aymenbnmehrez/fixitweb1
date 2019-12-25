@@ -1,0 +1,144 @@
+{#{% extends 'base.html.twig' %}#}
+{#                    {% block body %}#}
+
+{#    <div class="forum">#}
+
+
+
+{#            <table class="table table-hover">#}
+{#                <thead>#}
+{#                <tr>#}
+{#                    <th scope="col">publisher</th>#}
+{#                    <th scope="col">title</th>#}
+{#                    <th scope="col">content</th>#}
+{#                    <th scope="col">date</th>#}
+
+
+{#                </tr>#}
+{#                </thead>#}
+{#                    {% for i in P %}#}
+{#<tbody>#}
+{#                <tr>#}
+{#                    <th scope="col"> {{ i.user.first_name~' '~i.user.last_name }}</th>#}
+{#                    <th scope="col">{{ i.title }}</th>#}
+{#                    <th scope="col">  {{ i.content }}</th>#}
+{#                    <th scope="col">   {{ i.post_date|date('Y-m-d H:i:s') }}</th>#}
+
+
+
+{#                    <th scope="col">  <a href="{{path('admin_deletePost',{'id':i.post_id})}}"> <button><span class="glyphicon glyphicon-trash" ></span>#}
+{#                                Delete     </button></a></th>#}
+
+
+
+{#                    <th scope="col"><a href="{{path('admin_showComment',{'id':i.post_id})}}"> <button><span class="glyphicon glyphicon-search" ></span>#}
+{#                                Show Comment     </button></a></th>#}
+{#                </tr></tbody>#}
+{#    {% endfor %}#}
+{#            </table></div>#}
+
+
+
+
+{#    <style>#}
+{#        .forum{#}
+{#            margin-top: 10%;#}
+{#            margin-left: 20%;#}
+{#            margin-right: 20%;#}
+
+{#        }#}
+{#        .datepost{#}
+{#            margin-left: 90%;#}
+{#        }#}
+{#        .addpost{#}
+{#            margin-top: 2%;#}
+{#            margin-left: 80%;#}
+{#        }#}
+{#    </style>#}
+
+{#{% endblock %}#}
+
+
+
+{% extends 'admin.html.twig' %}
+
+    {% block content %}
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <body>
+
+
+
+
+                <div class="row tab">
+                    <div class="col-md-12">
+                        <!-- Advanced Tables -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading ">
+                                Forum Pubications
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover " id="dataTables-example">
+
+                                        <thead>
+                                        <tr>
+                                            <th>publisher</th>
+                                            <th>title</th>
+                                            <th>Content</th>
+                                            <th>Date</th>
+                                            <th></th>
+                                            <th></th>
+
+
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in P %}
+                                            <tr class="odd gradeX">
+                                                <td>{{ i.user.first_name~' '~i.user.last_name }}</td>
+                                                <td>{{ i.title }}</td>
+                                                <td>{{ i.content }}</td>
+                                                <td>{{ i.post_date|date('Y-m-d H:i:s') }}</td>
+                                                <td><a href="{{path('admin_deletePost',{'id':i.post_id})}}"> <button><span class="glyphicon glyphicon-trash" ></span>Delete </button></a></td>
+                                                <td><a href="{{path('admin_showComment',{'id':i.post_id})}}"> <button><span class="glyphicon glyphicon-search" ></span>Show Comment </button></a></td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--End Advanced Tables -->
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <script src="{{ asset('Admin/js/jquery-1.10.2.js') }}"></script>
+                <!-- BOOTSTRAP SCRIPTS -->
+                <script src="{{ asset('Admin/js/bootstrap.min.js') }}"></script>
+                <!-- METISMENU SCRIPTS -->
+                <script src="{{ asset('Admin/js/jquery.metisMenu.js') }}"></script>
+                <!-- DATA TABLE SCRIPTS -->
+                <script src="{{ asset('Admin/js/dataTables/jquery.dataTables.js') }}"></script>
+                <script src="{{ asset('Admin/js/dataTables/dataTables.bootstrap.js') }}"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('#dataTables-example').dataTable();
+                    });
+                </script>
+
+                <!-- CUSTOM SCRIPTS -->
+                <script src="{{ asset('Admin/js/custom.js') }}"></script>
+
+                </body>
+            </div></div>
+    {% endblock %}
+

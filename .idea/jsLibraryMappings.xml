@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{bootstrap, bootstrap-datepicker, dataTables.bootstrap4, dataTables.material, gijgo, html5shiv, jquery, jquery-1.11.1, jquery-3.3.1, jquery-3.4.1.slim, jquery.dataTables, leaflet, leaflet.markercluster, material-components-web, popper, respond}" />
+  </component>
+</project>

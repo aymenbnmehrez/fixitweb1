@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+            <link href="{{ asset('formu2/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+            <link href="{{ asset('formu2/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
+            <link href="{{ asset('formu2/css/select2.min.css')}}" rel="stylesheet" media="all">
+            <link href="{{ asset('formu2/css/daterangepicker.css')}}" rel="stylesheet" media="all">
+            <link href="{{ asset('formu2/css/main.css')}}" rel="stylesheet" media="all">
+
+
+
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+            <link href="{{ asset('profile/css/aos.css')}}" rel="stylesheet">
+            <link href="{{ asset('profile/css/bootstrap.min.css')}}" rel="stylesheet">
+            <link href="{{ asset('profile/css/main.css')}}" rel="stylesheet">
+
+
+            <link href="{{ asset('admin/js/dataTables/dataTables.bootstrap.css')}}" rel="stylesheet" />
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+            <!-- BOOTSTRAP STYLES-->
+            <link href="{{ asset('admin/css/bootstrap.css')}}" rel="stylesheet" />
+            <!-- FONTAWESOME STYLES-->
+
+            <link href="{{ asset('admin/css/font-awesome.css')}}" rel="stylesheet" />
+            <!-- MORRIS CHART STYLES-->
+
+            <link href="{{ asset('admin/js/morris/morris-0.4.3.min.css')}}" rel="stylesheet" />
+            <!-- CUSTOM STYLES-->
+
+            <link href="{{ asset('admin/css/custom.css')}}" rel="stylesheet" />
+            <link rel = "stylesheet"
+                  href = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+            <link rel = "stylesheet"
+                  href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+            <link href="{{ asset('datepicker/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+            <link href="{{ asset('datepicker/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+            <!-- Font special for pages-->
+            <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+            <!-- Vendor CSS-->
+
+            <link href="{{ asset('datepicker/css/select2.min.css')}}" rel="stylesheet" media="all">
+
+            <link href="{{ asset('datepicker/css/daterangepicker.css')}}" rel="stylesheet" media="all">
+
+            <!-- Main CSS-->
+
+            <link href="{{ asset('datepicker/css/main.css')}}" rel="stylesheet" media="all">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+            <link rel="icon" type="image/png" href="{{ asset('formu/images/icons/favicon.ico') }}"/>
+            <!--===============================================================================================-->
+
+            <link rel="stylesheet" type="text/css" href="{{ asset('formu/css/bootstrap.css/bootstrap.min.css') }}">
+            <!--===============================================================================================-->
+
+            <link rel="stylesheet" type="text/css" href="{{ asset('formu/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="{{ asset('formu/css/animate.css') }}">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="{{ asset('formu/css/hamburgers.css/hamburgers.min.css') }}">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="{{ asset('formu/css/select2.css/select2.min.css') }}">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="{{ asset('formu/css/util.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('formu/css/main.css') }}">
+            <link href="{{ asset('fixit/css/bootstrap.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('fixit/css/slick.css') }}" rel="stylesheet">
+            <link href="{{ asset('fixit/css/font-awesome.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('fixit/css/nouislider.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('fixit/css/style.css') }}" rel="stylesheet">
+            <link href="{{ asset('fixit/css/slick-theme.css') }}" rel="stylesheet">
+            <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        {% endblock %}
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.material.min.js"></script>
+        <script src="{{ asset('formu/js/jquery-3.2.1.min.js') }}"></script>
+        <!--===============================================================================================-->
+        <script src="{{ asset('formu/js/popper.js') }}"></script>
+        <script src="{{ asset('formu/js/bootstrap.js/bootstrap.min.js') }}"></script>
+        <!--===============================================================================================-->
+        <script src="{{ asset('formu/js/select2.js/select2.min.js') }}"></script>
+        <!--===============================================================================================-->
+
+        <script src="{{ asset('formu/js/main.js') }}"></script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block header %}
+
+{#            <div id="header">#}
+{#                <div class="container">#}
+{#                    <div class="pull-left">#}
+{#                        <!-- Logo -->#}
+{#                        <div class="header-logo">#}
+{#                            <a class="logo" href="#">#}
+{#                                #}{#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+{#                            </a>#}
+{#                        </div>#}
+
+{#                    </div>#}
+{#                    <div class="pull-right">#}
+{#                        <a href="/fixit/web/app_dev.php/login"><button type="button" class="btn btn-primary">Login</button></a>#}
+{#                        <a href="/fixit/web/app_dev.php/register"> <button type="button" class="btn btn-primary">Join</button></a>#}
+{#                    </div>#}
+{#                </div>#}
+
+{#                <!-- header -->#}
+{#            </div>#}
+{#            <!-- container -->#}
+        {% endblock %}
+        {% block body %}{% endblock %}
+        {% block footer %}
+            <footer id="footer" class="section section-grey ftt">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- footer widget -->
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="footer">
+                                <!-- footer logo -->
+                                <div class="footer-logo">
+                                    <a class="logo" href="#">
+                                        <img src="./img/logo.png" alt="">
+                                    </a>
+                                </div>
+                                <!-- /footer logo -->
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+
+                                <!-- footer social -->
+                                <ul class="footer-social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                </ul>
+                                <!-- /footer social -->
+                            </div>
+                        </div>
+                        <!-- /footer widget -->
+
+                        <!-- footer widget -->
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-header">My Account</h3>
+                                <ul class="list-links">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">My Wishlist</a></li>
+                                    <li><a href="#">Compare</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="#">Login</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /footer widget -->
+
+                        <div class="clearfix visible-sm visible-xs"></div>
+
+                        <!-- footer widget -->
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-header">Customer Service</h3>
+                                <ul class="list-links">
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="{{ path('ajout_ticket') }}">Send Claim</a></li>
+{#                                    <li><a href="#">Shiping Guide</a></li>#}
+                                    <li><a href="#">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /footer widget -->
+
+                        <!-- footer subscribe -->
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-header">Stay Connected</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                                <form>
+                                    <div class="form-group">
+                                        <input class="input" placeholder="Enter Email Address">
+                                    </div>
+                                    <button class="primary-btn">Join Newslatter</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /footer subscribe -->
+                    </div>
+                    <!-- /row -->
+                    <hr>
+                    <!-- row -->
+                    <!-- /row -->
+                </div>
+                <!-- /container -->
+            </footer>
+            <style>
+                .ftt{
+                    margin-top: 10%;
+                }
+            </style>
+
+        {% endblock %}
+
+        {% block javascripts %}
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'UA-23581568-13');
+            </script>
+            <script src="{{ asset('formu/js/jquery-3.2.1.min.js') }}"></script>
+            <!--===============================================================================================-->
+            <script src="{{ asset('formu/js/popper.js') }}"></script>
+            <!--===============================================================================================-->
+            <script src="{{ asset('formu/js/select2.min.js') }}"></script>
+            <!--===============================================================================================-->
+            <script src="https://js.stripe.com/v3/"></script>
+
+            <script src="{{ asset('formu/js/main.js') }}"></script>
+            <script  src="{{ asset('fixit/js/jquery.min.js') }}"></script>
+            <script  src="{{ asset('fixit/js/bootstrap.min.js') }}"></script>
+            <script  src="{{ asset('fixit/js/slick.min.js') }}"></script>
+            <script  src="{{ asset('fixit/js/nouislider.min.js') }}"></script>
+            <script  src="{{ asset('fixit/js/jquery.zoom.min.js') }}"></script>
+            <script  src="{{ asset('fixit/js/main.js') }}"></script>
+            <script src="{{asset('datepicker/js/jquery.js/jquery.min.js')}}"></script>
+            <!-- Vendor JS-->
+            <script src="{{asset('datepicker/js/select2.min.js')}}"></script>
+            <script src="{{asset('datepicker/js/moment.min.js')}}"></script>
+            <script src="{{ asset('datepicker/js/daterangepicker.js')}}"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+
+            <!-- Main JS-->
+            <script>
+                jQuery(document).ready(function() {
+                    $('.js-datepicker').datepicker();
+                });
+            </script>
+            <!-- BOOTSTRAP SCRIPTS -->
+
+            <!-- METISMENU SCRIPTS -->
+
+            <!-- MORRIS CHART SCRIPTS -->
+
+            <script src="{{ asset('admin/js/morris/raphael-2.1.0.min.js')}}"></script>
+
+            <script src="{{ asset('admin/js/morris/morris.js')}}"></script>
+            <!-- CUSTOM SCRIPTS -->
+
+
+            <script src="{{ asset('Admin/js/dataTables/jquery.dataTables.js') }}"></script>
+            <script src="{{ asset('Admin/js/dataTables/dataTables.bootstrap.js') }}"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#dataTables-example').dataTable();
+                });
+            </script>
+            <!-- CUSTOM SCRIPTS -->
+            <script src="{{ asset('Admin/js/custom.js') }}"></script>
+            <script src="{{ asset('datepicker/js/global.js')}}"></script>
+            <script src="{{ asset('profile/js/core/popper.min.js')}}"></script>
+            <script src="{{ asset('profile/js/now-ui-kit.js?v=1.1.0')}}"></script>
+            <script src="{{ asset('profile/js/aos.js')}}"></script>
+            <script src="{{ asset('profile/js/main.js')}}"></script>
+{#            <script src="fixit/js/jquery.min.js"></script>#}
+{#            <script src="js/bootstrap.min.js"></script>#}
+{#            <script src="js/slick.min.js"></script>#}
+{#            <script src="js/nouislider.min.js"></script>#}
+{#            <script src="js/jquery.zoom.min.js"></script>#}
+{#            <script src="js/main.js"></script>#}
+            <!-- Vendor JS-->
+
+            <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="0c82dd90-5963-4a0e-bfcd-26a3161a79dc";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+
+            <!-- Main JS-->
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{#{{ form_start(form) }}#}
+{# {{ form_widget(form) }}#}
+{#{{ form_end(form) }}#}
+<div  class="container claim">
+ <h1>Sending a claim:</h1><br>
+ {{ form_start(form,{'attr': {'class':'contact2-form validate-form'}}) }}
+
+
+
+ <div class="wrap-input2 validate-input" data-validate="Name is required">
+  {{ form_widget(form.provider, {'attr': {'class': 'input2','name': 'name','type':'text'}}) }}
+  <span class="focus-input2" data-placeholder="Provider"></span>
+
+ </div>
+ <div class="wrap-input2 validate-input input_claim" data-validate="Name is required">
+  {{ form_widget(form.description, {'attr': {'class': 'input2'}}) }}
+  <span class="focus-input2" data-placeholder="Description"></span>
+ </div>
+    <div class="wrap-input2 validate-input" data-validate="Name is required">
+        {{ form_widget(form.id) }}
+        <span class="focus-input2" ></span>
+    </div>
+ <div class="wrap-input2 validate-input" data-validate="Name is required">
+     {{ form_widget(form.image) }}
+ <span class="focus-input2" ></span>
+</div>
+
+
+ <div class="container-contact2-form-btn">
+  <div class="wrap-contact2-form-btn">
+   <div class="contact2-form-bgbtn"></div>
+   {{ form_widget(form.Ajouter, {'attr': {'class': 'contact2-form-btn'}}) }}
+  </div>
+ </div>
+</div>
+ <style>
+  .claim{
+   margin-top: 10%;
+   margin-bottom: 5%;
+   width: 50%;
+  }
+ </style>
+ <style>
+  .input_claim{
+   margin-top: 10%;
+   margin-bottom: 5%;
+   width: 50%;
+  }
+ </style>
+ {{ form_end(form) }}
+{% endblock %}

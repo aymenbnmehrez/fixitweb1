@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a class="logo" href="#">
+                        {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                    </a>
+                </div>
+
+            </div>
+            <div class="pull-right">
+                <a href="/fixit/web/app_dev.php/logout"><button type="button" class="btn btn-primary">Logout</button></a>
+            </div>
+        </div>
+
+        <!-- header -->
+    </div>
+    <!-- container -->
+{% endblock %}
+{% block body %}
+<div id="navigation">
+    <!-- container -->
+    <div class="container">
+        <div id="responsive-nav">
+            <!-- category nav -->
+            <div class="category-nav">
+                <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                <ul class="category-list">
+                    <li class="dropdown side-dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ask for a service<i class="fa fa-angle-right"></i></a>
+                        <div class="custom-menu">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <ul class="list-links">
+                                        <li>
+                                            <h3 class="list-links-title">Option</h3></li>
+                                        <li><a href="{{path('client_addAskService')}}">Add a request</a></li>
+                                        <li><a href="{{path('client_displayservice')}}">My request</a></li>
+                                    </ul>
+                                    <hr class="hidden-md hidden-lg">
+                                </div>
+
+                            </div>
+                            <div class="row hidden-sm hidden-xs">
+                                <div class="col-md-12">
+                                    <hr>
+                                    <a class="banner banner-1" href="#">
+                                        <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                        <div class="banner-caption text-center">
+                                            <h2 class="white-color">NEW COLLECTION</h2>
+                                            <h3 class="white-color font-weak">HOT DEAL</h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="{{path('client_addAskService')}}">Forum</a></li>
+
+                </ul>
+            </div>
+            <!-- /category nav -->
+
+            <!-- menu nav -->
+            <div class="menu-nav">
+                <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                <ul class="menu-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact us</a></li>
+
+                </ul>
+            </div>
+            <!-- menu nav -->
+
+        </div>
+    </div>
+    <!-- /container -->
+    {#    </div>#}
+    {#    <!-- /NAVIGATION -->#}
+</div>
+
+
+
+<center>{{ form_start(f) }}
+    <div class="form-style-2">
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        </br>
+        <div class="form-style-2-heading">Add a Comment</div>
+comment:*{{ form_widget(f.comment, {'attr': {'class': 'textarea-field'}}) }}</br>
+        </br></br>
+ <center>  {{ form_widget(f.save, {'attr': {'class': 'btn btn-outline-success'}}) }}</center>
+    </div>
+    {{ form_end(f) }}
+
+    <style type="text/css">
+        .form-style-2{
+            max-width: 500px;
+            padding: 20px 12px 10px 20px;
+            font: 13px Arial, Helvetica, sans-serif;
+        }
+        .form-style-2-heading{
+            font-weight: bold;
+            font-style: italic;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+            font-size: 15px;
+            padding-bottom: 3px;
+        }
+        .form-style-2 label{
+            display: block;
+            margin: 0px 0px 15px 0px;
+        }
+        .form-style-2 label > span{
+            width: 100px;
+            font-weight: bold;
+            float: left;
+            padding-top: 8px;
+            padding-right: 5px;
+        }
+        .form-style-2 span.required{
+            color:red;
+        }
+        .form-style-2 .tel-number-field{
+            width: 40px;
+            text-align: center;
+        }
+        .form-style-2 input.input-field, .form-style-2 .select-field{
+            width: 48%;
+        }
+        .form-style-2 input.input-field,
+        .form-style-2 .tel-number-field,
+        .form-style-2 .textarea-field,
+        .form-style-2 .select-field{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border: 1px solid #C2C2C2;
+            box-shadow: 1px 1px 4px #EBEBEB;
+            -moz-box-shadow: 1px 1px 4px #EBEBEB;
+            -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            padding: 7px;
+            outline: none;
+        }
+        .form-style-2 .input-field:focus,
+        .form-style-2 .tel-number-field:focus,
+        .form-style-2 .textarea-field:focus,
+        .form-style-2 .select-field:focus{
+            border: 1px solid #0C0;
+        }
+        .form-style-2 .textarea-field{
+            height:100px;
+            width: 55%;
+        }
+        .form-style-2 input[type=submit],
+        .form-style-2 input[type=button]{
+            border: none;
+            padding: 8px 15px 8px 15px;
+            background: #FF8500;
+            color: #fff;
+            box-shadow: 1px 1px 4px #DADADA;
+            -moz-box-shadow: 1px 1px 4px #DADADA;
+            -webkit-box-shadow: 1px 1px 4px #DADADA;
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+        }
+        .form-style-2 input[type=submit]:hover,
+        .form-style-2 input[type=button]:hover{
+            background: #EA7B00;
+            color: #fff;
+        }
+    </style>
+    {% endblock %}
+

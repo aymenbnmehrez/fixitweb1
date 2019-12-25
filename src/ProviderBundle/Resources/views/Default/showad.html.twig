@@ -1,0 +1,248 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a class="logo" href="#">
+                        {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                    </a>
+                </div>
+
+            </div>
+            <div class="pull-right">
+                <a href="/fixit/web/app_dev.php/logout"><button type="button" class="btn btn-primary">Logout</button></a>
+            </div>
+        </div>
+
+        <!-- header -->
+    </div>
+    <!-- container -->
+{% endblock %}
+
+{% block body %}
+    <div id="navigation">
+        <!-- container -->
+        <div class="container">
+            <div id="responsive-nav">
+                <!-- category nav -->
+                <div class="category-nav">
+                    <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                    <ul class="category-list">
+                        <li class="dropdown side-dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ad<i class="fa fa-angle-right"></i></a>
+                            <div class="custom-menu">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ul class="list-links">
+                                            <li>
+                                                <h3 class="list-links-title">Option</h3></li>
+                                            <li><a href="{{ path('provider_addAd') }}">Add an Ad</a></li>
+                                            <li><a href="{{ path('provider_showAd') }}">My Ads</a></li>
+                                        </ul>
+                                        <hr class="hidden-md hidden-lg">
+                                    </div>
+
+                                </div>
+                                <div class="row hidden-sm hidden-xs">
+                                    <div class="col-md-12">
+                                        <hr>
+                                        <a class="banner banner-1" href="#">
+                                            <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                            <div class="banner-caption text-center">
+                                                <h2 class="white-color">NEW COLLECTION</h2>
+                                                <h3 class="white-color font-weak">HOT DEAL</h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="#">Search for a job</a></li>
+                        <li><a href="#">Forum</a></li>
+
+                    </ul>
+                </div>
+                <!-- /category nav -->
+                <div class="menu-nav">
+                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                    <ul class="menu-list">
+                        <li><a href="{{ path('provider_homepage') }}">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact us</a></li>
+
+                    </ul>
+                </div>
+                <!-- menu nav -->
+                <!-- menu nav -->
+            </div>
+        </div>
+        <!-- /container -->
+        {#    </div>#}
+        {#    <!-- /NAVIGATION -->#}
+    </div>
+
+    <div id="home">
+        <!-- container -->
+        <div class="container">
+            <!-- home wrap -->
+            <div class="home-wrap">
+                <!-- home slick -->
+                {% block content %}
+                    <table id="azer" class="mdl-data-table tab" style="width:100%;border: thin solid #6495ed;" border="5">
+                        <thead>
+                        <tr>
+                            <th style="background-color: #dd6666;"></th>
+                            <th>Title</th>
+                            <th>Availability</th>
+                            <th>Description</th>
+                            <th>Published at</th>
+                            <th>Delete</th>
+                            <th>Update</th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody >
+                        {% for i in ads %}
+                            <tr>
+                                <td><img src="{{ asset('fixit/public/uploads/')~i.image}}" width="100px"></td>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.availability | date('y/m/d') }}</td>
+                                <td>{{ i.description }}</td>
+                                <td>{{ i.getPublishedAt() | date }}</td>
+                                <td><a href="{{ path('provider_delete',{'ad_id':i.getAdId()})}}"><button class="btn btn-danger btn-lg  " > <span class="glyphicon glyphicon-trash" ></span> >delete</button></a></td>
+                                <td><a href="{{ path('provider_update',{'ad_id':i.getAdId()})}}"><button class="btn btn-danger btn-lg  " > <span class="glyphicon glyphicon-trash" ></span>>Update</button></a></td>
+                            </tr>
+                        {% endfor %}
+                  {#<div class="navigation">
+                            {{ knp_pagination_render(ads) }}
+                        </div>#}
+                        </tbody>
+                    </table>
+                    <script>
+                        $(document).ready(function() {
+                            $('#azer').DataTable( {
+                                columnDefs: [
+                                    {
+                                        targets: [ 0, 1, 2 ],
+                                        className: 'mdl-data-table__cell--non-numeric'
+                                    }
+                                ]
+                            } );
+                        } );        </script>
+                    <style>
+                        .tab{
+                            margin-top: 10%;
+                            /*margin-left: 5%;*/
+                        }
+                    </style>
+                {% endblock %}
+                <!-- /home slick -->
+            </div>
+            <!-- /home wrap -->
+        </div>
+        <!-- /container -->
+    </div>
+
+</br>
+{% endblock %}
+{% block footer %}
+    <footer id="footer" class="section section-grey">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- footer widget -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="footer">
+                        <!-- footer logo -->
+                        <div class="footer-logo">
+                            <a class="logo" href="#">
+                                <img src="./img/logo.png" alt="">
+                            </a>
+                        </div>
+                        <!-- /footer logo -->
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+
+                        <!-- footer social -->
+                        <ul class="footer-social">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                        <!-- /footer social -->
+                    </div>
+                </div>
+                <!-- /footer widget -->
+
+                <!-- footer widget -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-header">My Account</h3>
+                        <ul class="list-links">
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li><a href="#">Compare</a></li>
+                            <li><a href="#">Checkout</a></li>
+                            <li><a href="#">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /footer widget -->
+
+                <div class="clearfix visible-sm visible-xs"></div>
+
+                <!-- footer widget -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-header">Customer Service</h3>
+                        <ul class="list-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Shiping & Return</a></li>
+                            <li><a href="#">Shiping Guide</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /footer widget -->
+
+                <!-- footer subscribe -->
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-header">Stay Connected</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                        <form>
+                            <div class="form-group">
+                                <input class="input" placeholder="Enter Email Address">
+                            </div>
+                            <button class="primary-btn">Join Newslatter</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /footer subscribe -->
+            </div>
+            <!-- /row -->
+            <hr>
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <!-- footer copyright -->
+                    <div class="footer-copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <!-- /footer copyright -->
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </footer>
+{% endblock %}

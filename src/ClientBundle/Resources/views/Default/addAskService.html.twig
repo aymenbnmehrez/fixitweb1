@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a class="logo" href="#">
+                        {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                    </a>
+                </div>
+
+            </div>
+            <div class="pull-right">
+                <a href="/fixit/web/app_dev.php/logout"><button class="btn btn-primary btn-lg  "  > <span class="glyphicon glyphicon-log-out" ></span> Logout</button></a>
+            </div>
+        </div>
+
+        <!-- header -->
+    </div>
+    <!-- container -->
+{% endblock %}
+{% block body %}
+    <div id="navigation">
+        <!-- container -->
+        <div class="container">
+            <div id="responsive-nav">
+                <!-- category nav -->
+                <div class="category-nav">
+                    <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                    <ul class="category-list">
+                        <li class="dropdown side-dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ask for a service<i class="fa fa-angle-right"></i></a>
+                            <div class="custom-menu">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ul class="list-links">
+                                            <li>
+                                                <h3 class="list-links-title">Option</h3></li>
+                                            <li><a href="{{path('client_addAskService')}}">Add a request</a></li>
+                                            <li><a href="{{path('client_displayservice')}}">My request</a></li>
+                                        </ul>
+                                        <hr class="hidden-md hidden-lg">
+                                    </div>
+
+                                </div>
+                                <div class="row hidden-sm hidden-xs">
+                                    <div class="col-md-12">
+                                        <hr>
+                                        <a class="banner banner-1" href="#">
+                                            <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                            <div class="banner-caption text-center">
+                                                <h2 class="white-color">NEW COLLECTION</h2>
+                                                <h3 class="white-color font-weak">HOT DEAL</h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="#">Forum</a></li>
+
+                    </ul>
+                </div>
+                <!-- /category nav -->
+
+                <!-- menu nav -->
+                <div class="menu-nav">
+                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                    <ul class="menu-list">
+                        <li><a href="{{path('fixit_homepage')}}">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact us</a></li>
+
+                    </ul>
+                </div>
+                <!-- menu nav -->
+
+            </div>
+        </div>
+        <!-- /container -->
+        {#    </div>#}
+        {#    <!-- /NAVIGATION -->#}
+    </div>
+
+    <!-- HOME -->
+
+    <div  class="container askService">
+        <h1>Asking for a service:</h1><br>
+        {{ form_start(f,{'attr': {'class':'contact2-form validate-form'}}) }}
+        <div class="wrap-input2 validate-input" data-validate="Name is required">
+            {{ form_widget(f.service_name, {'attr': {'class': 'input2'}}) }}
+            <span class="focus-input2" data-placeholder="Service Name"></span>
+
+        </div>
+        {{ form_widget(f.date,{'attr': {'class': 'input2'}})}}<br><br>
+        <div class="wrap-input2 validate-input" data-validate="Name is required">
+            {{ form_widget(f.started_at, {'attr': {'class': 'input2'}}) }}
+            <span class="focus-input2" data-placeholder="Started at"></span>
+
+        </div>
+        <div class="wrap-input2 validate-input" data-validate="Name is required">
+            {{ form_widget(f.duration, {'attr': {'class': 'input2','name': 'name','type':'text'}}) }}
+            <span class="focus-input2" data-placeholder="Duration"></span>
+
+        </div>
+        <div class="wrap-input2 validate-input" data-validate="Name is required">
+            {{ form_widget(f.description, {'attr': {'class': 'input2'}}) }}
+            <span class="focus-input2" data-placeholder="Description"></span>
+        </div>
+
+        <div class="wrap-input2 validate-input" data-validate="Name is required">
+            {{ form_widget(f.price, {'attr': {'class': 'input2'}}) }}
+            <span class="focus-input2" data-placeholder="Price"></span>
+
+        </div>
+        <div class="container-contact2-form-btn">
+            <div class="wrap-contact2-form-btn">
+                <div class="contact2-form-bgbtn"></div>
+                {{ form_widget(f.Confirm, {'attr': {'class': 'contact2-form-btn'}}) }}
+            </div>
+        </div>
+
+        {{ form_end(f) }}
+        <!-- /HOME -->
+    </div>
+    <style>
+        .askService{
+            margin-top: 10%;
+            margin-bottom: 5%;
+            width: 20%;
+        }
+    </style>
+{% endblock %}
+

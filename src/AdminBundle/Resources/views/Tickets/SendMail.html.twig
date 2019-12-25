@@ -1,0 +1,124 @@
+{% extends 'admin.html.twig' %}
+{% block content %}
+    <!DOCTYPE html>
+    <div id="page-wrapper" >
+    <div id="page-inner">
+    <body>
+
+
+
+                <!-- /. ROW  -->
+                <div class="row">
+                    <div class=" col-lg-12">
+
+                        <div class="chat-panel panel panel-default chat-boder chat-panel-head" >
+                            <div class="panel-heading">
+                                <i class="fa fa-comments fa-fw"></i>
+                                Answer Claim :{{ T.categoryt.categoryName }}
+                                <div class="btn-group pull-right">
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <ul class="chat-box">
+                                    <li class="left clearfix">
+                                    <span class="chat-img pull-left">
+                                        <img src="{{ asset('Admin/img/1.png') }}" alt="User" class="img-circle" />
+                                    </span>
+                                        <div class="chat-body">
+                                            <strong >{{ T.user}} ({{ T.user.email }})</strong><br>
+                                            <strong > Report on Mr/Ms :   {{ T.provider }}</strong>
+                                            <small class="pull-right text-muted">
+                                                <i class="fa fa-clock-o fa-fw"></i>  {{T.dateTicket|date}}
+                                            </small>
+                                            <p>
+                                            <p>
+                                                {{ T.description }} <br>
+
+                                              </p>
+                                            <img src="{{ asset('public/uploads/' ~ T.image) }}" alt="" width="200" height="200">
+                                        </div>
+                                    </li>
+
+                                    <li class="right clearfix" >
+                                    <span class="chat-img pull-right">
+
+                                        <img src="{{ asset('Admin/img/2.png') }}" alt="User" class="img-circle" />
+                                    </span>
+                                        <div class="chat-body clearfix">
+
+                                            <small class=" text-muted">
+                                                <i class="fa fa-clock-o fa-fw"></i>  {{"now"|date}}</small>
+                                            <strong class="pull-right">Fixit Admin</strong>
+
+                                              {% if  message == null    %} <p> NO msg</p>
+                                                {% else  %} <p> {{message}}</p>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="panel-footer">
+                                {{ form_start(mail) }}
+                                     <div class="input-group">
+                                    {{ form_widget(mail.message, {'attr': {'class': 'form-control input-sm','placeholder':'Type your message to send...','name': 'name','type':'text'}}) }}
+                                          <span class="input-group-btn">
+                                            {{ form_widget(mail.send,{'attr': {'class': 'btn btn-warning btn-sm','id': 'btn-chat','type':'button'}}) }}
+
+                                  </span>
+                                </div>
+                                    {{ form_end(mail) }}
+{#                                    <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message to send..." />#}
+
+{#                                    <a href="{{ path('Add_Email',{'id':T.id}) }}"  class="btn btn-warning btn-sm" id="btn-chat">#}
+{#                                        Send#}
+{#                                    </a>#}
+
+
+
+
+{#                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
+{#                                <div class="modal-dialog">#}
+{#                                    <style>#}
+{#    p {#}
+{#        margin-top:1px;#}
+{#    }#}
+{#  </style>#}
+{#                                    <div class="modal-content" >#}
+{#<p><div class="modal-body">#}
+{#                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>#}
+{#                                            <h4  id="myModalLabel">  Do you consider this claim as ' Treated ' ? </h4>#}
+
+{#</div></p>#}
+{#                                        <div class="modal-footer">#}
+{#                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Not yet</button>#}
+{#                                            <button type="button" class="btn btn-primary">yes</button>#}
+{#                                        </div>#}
+{#                                    </div>#}
+
+{#                                </div>#}
+{#                            </div>#}
+
+
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+            </div>
+
+    </body>
+    </div></div>
+
+{% endblock %}

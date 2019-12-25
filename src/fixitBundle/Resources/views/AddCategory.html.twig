@@ -1,0 +1,31 @@
+{% extends 'admin.html.twig' %}
+{% block content %}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Welcome Admin , Love to see you back, here you can check all Ads !! </h5>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        New category
+                    </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+
+
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+            {{ form_start(f) }}
+
+            {{ form_end(f) }}
+
+<a href="{{ path('admin_homepage') }}">BACK</a>
+{% endblock %}

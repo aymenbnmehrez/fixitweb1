@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+    {% block header %}
+
+        <div id="header">
+            <div class="container">
+                <div class="pull-left">
+                    <!-- Logo -->
+                    <div class="header-logo">
+                        <a class="logo" href="#">
+                            {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                        </a>
+                    </div>
+
+                </div>
+                <div class="pull-right">
+                    <a href="{{ path('fos_user_security_logout') }}"><button type="button" class="btn btn-primary">Logout</button></a>
+                </div>
+            </div>
+
+            <!-- header -->
+        </div>
+        <!-- container -->
+    {% endblock %}
+    {% block body %}
+        <div id="navigation">
+            <!-- container -->
+            <div class="container">
+                <div id="responsive-nav">
+                    <!-- category nav -->
+                    <div class="category-nav">
+                        <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                        <ul class="category-list">
+                            <li class="dropdown side-dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ask for a service<i class="fa fa-angle-right"></i></a>
+                                <div class="custom-menu">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <ul class="list-links">
+                                                <li>
+                                                    <h3 class="list-links-title">Option</h3></li>
+                                                <li><a href="{{path('client_addAskService')}}">Add a request</a></li>
+                                                <li><a href="{{path('client_displayservice')}}">My request</a></li>
+                                            </ul>
+                                            <hr class="hidden-md hidden-lg">
+                                        </div>
+
+                                    </div>
+                                    <div class="row hidden-sm hidden-xs">
+                                        <div class="col-md-12">
+                                            <hr>
+                                            <a class="banner banner-1" href="#">
+                                                <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                                <div class="banner-caption text-center">
+                                                    <h2 class="white-color">NEW COLLECTION</h2>
+                                                    <h3 class="white-color font-weak">HOT DEAL</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="#">Forum</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /category nav -->
+
+                    <!-- menu nav -->
+                    <div class="menu-nav">
+                        <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                        <ul class="menu-list">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Contact us</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- menu nav -->
+
+                </div>
+            </div>
+            <!-- /container -->
+            {#    </div>#}
+            {#    <!-- /NAVIGATION -->#}
+        </div>
+<center>
+<div class="rt">
+        <h2><span class="badge badge-pill badge-light">Rate {{ i.name }} :</span></h2>
+
+
+        {% for s in range(1,i.note)   %}
+                            <i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                        {% endfor %}
+                                    <form method="post" action="{{ path('client_rating') }}">
+
+                                        <div class="modal-body">
+                                            <div class="form-group" id="rating-ability-wrapper">
+                                                <label class="control-label" for="rating">
+                                                    <span class="field-label-header"></span><br>
+                                                    <span class="field-label-info"></span>
+                                                    <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
+                                                </label>
+
+                                                <h2 class="bold rating-header"  style="">
+                                                    <input type="text" class="selected_rating"  name="note_service" id="fieldname" value="0" style="    width: 10px;
+                                        border: 0px;
+                                        margin: 0;" /> <small> / 5</small>
+                                                </h2>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" value="{{ i.getServiceId() }}" name="id_service" class="btn btn-warning btn-lg btt">Save </button>
+                                        </div>
+                                    </form>
+
+
+</div>
+</center>
+        <!-- Modal -->
+        <script>
+            jQuery(document).ready(function($){
+
+                $(".btnrating").on('click',(function(e) {
+                    var previous_value = $("#selected_rating").val();
+                    var selected_value = $(this).attr("data-attr");
+                    fieldname.value=selected_value
+
+                    $("#selected_rating").val(selected_value);
+                    $(".selected-rating").empty();
+                    $(".selected-rating").html(selected_value);
+                    for (i = 1; i <= selected_value; ++i) {
+                        $("#rating-star-"+i).toggleClass('btn-warning');
+                        $("#rating-star-"+i).toggleClass('btn-default');
+
+                    }
+
+                    for (ix = 1; ix <= previous_value; ++ix) {
+                        $("#rating-star-"+ix).toggleClass('btn-warning');
+                        $("#rating-star-"+ix).toggleClass('btn-default');
+                    }
+
+                }));
+
+
+            });
+
+
+
+
+
+        </script>
+<style>
+    .rt{
+        margin-top: 5%;
+    }
+    .btt{
+        margin-right: 48%;
+
+    }
+</style>
+
+    {% endblock %}

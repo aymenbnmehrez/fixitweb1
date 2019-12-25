@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a class="logo" href="#">
+                        {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                    </a>
+                </div>
+
+            </div>
+            <div class="pull-right">
+                <a href="/fixit/web/app_dev.php/logout"><button type="button" class="btn btn-primary">Logout</button></a>
+            </div>
+        </div>
+
+        <!-- header -->
+    </div>
+    <!-- container -->
+{% endblock %}
+{% block body %}
+    <div id="navigation">
+        <!-- container -->
+        <div class="container">
+            <div id="responsive-nav">
+                <!-- category nav -->
+                <div class="category-nav">
+                    <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                    <ul class="category-list">
+                        <li class="dropdown side-dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ask for a service<i class="fa fa-angle-right"></i></a>
+                            <div class="custom-menu">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ul class="list-links">
+                                            <li>
+                                                <h3 class="list-links-title">Option</h3></li>
+                                            <li><a href="{{path('client_addAskService')}}">Add a request</a></li>
+                                            <li><a href="{{path('client_displayservice')}}">My request</a></li>
+                                        </ul>
+                                        <hr class="hidden-md hidden-lg">
+                                    </div>
+
+                                </div>
+                                <div class="row hidden-sm hidden-xs">
+                                    <div class="col-md-12">
+                                        <hr>
+                                        <a class="banner banner-1" href="#">
+                                            <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                            <div class="banner-caption text-center">
+                                                <h2 class="white-color">NEW COLLECTION</h2>
+                                                <h3 class="white-color font-weak">HOT DEAL</h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="#">Forum</a></li>
+
+                    </ul>
+                </div>
+                <!-- /category nav -->
+
+                <!-- menu nav -->
+                <div class="menu-nav">
+                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                    <ul class="menu-list">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact us</a></li>
+
+                    </ul>
+                </div>
+                <!-- menu nav -->
+
+            </div>
+        </div>
+        <!-- /container -->
+        {#    </div>#}
+        {#    <!-- /NAVIGATION -->#}
+    </div>
+
+    <a href="{{path('client_addPost')}}"> <button class="btn btn-primary btn-lg addpost"><span class="glyphicon glyphicon-plus" ></span>
+            Add post</button></a>
+
+    {% for i in P %}
+
+        {% set difference = date(i.post_date).diff(date("now")) %}
+        {% set leftDays = difference.days %}
+<div class="forum">
+<div class="input-group">
+
+    <h2 class="badge badge-pill badge badge-pill badge-secondary cercle">{{ i.user.first_name|first|upper }}</h2>
+
+      <h2 class="text-secondary cc">{{ i.user.first_name~' '~i.user.last_name }}</h2></div>
+        <div class="jumbotron" >
+        <h2>{{ i.title }}</h2>
+        <p>{{ i.content }}</p>
+        <p class="badge badge-pill badge-secondary datepost">{{ i.post_date|date('Y-m-d H:i:s') }}</p>
+            {% if leftDays < 1 %}
+                <h2 class="badge badge-pill badge-success session">session active 💬</h2>
+                {% else %}
+                    <h2 class="badge badge-pill badge-danger session">session inactive ⛔</h2>
+            {% endif %}
+            </br>
+            </br>
+        </div>
+            <div class="btn-group btn-group-lg datepostt" role="group" aria-label="Basic example">
+
+                {% if i.user.id == C.id %}
+
+                    <a href="{{path('client_deletePost',{'id':i.post_id})}}"> <button class="btn btn-danger btn-lg btn1  "><span class="glyphicon glyphicon-trash" ></span>
+                            Delete     </button></a>
+                    <a href="{{path('client_editPost',{'id':i.post_id})}}"> <button class="btn btn-primary btn-lg btn2  "><span class="glyphicon glyphicon-edit" ></span>
+                            Edit     </button></a>
+                {% endif %}
+
+                {% if leftDays < 1 %}
+
+
+                    <a href="{{path('client_addComment',{'id':i.post_id})}}"> <button class="btn btn-primary btn-lg btn2"><span class="glyphicon glyphicon-edit" ></span>
+                            Comment     </button></a>
+                {% endif %}
+
+
+                <a href="{{path('client_showComment',{'id':i.post_id})}}"> <button class="btn btn-primary btn-lg btn2"><span class="glyphicon glyphicon-search" ></span>
+                        Show Comment     </button></a>
+        </div>
+</div>
+
+    {% endfor %}
+
+
+    <!-- HOME -->
+<style>
+    .forum{
+        margin-top: 10%;
+        margin-left: 20%;
+        margin-right: 20%;
+
+    }
+
+    .datepost{
+        margin-left: 75%;
+    }
+    .datepostt{
+        margin-top: 0pc;
+    }
+    .addpost{
+        margin-top: 2%;
+        margin-left: 80%;
+    }
+    .cc{
+        margin-left: 1pc;
+    }
+.session{
+    font-size:medium;
+
+}
+    .cercle{
+        font-size:x-large;
+
+   }
+    .btn2{
+        margin-left: 1pc;
+
+    }
+</style>
+
+    <!-- /HOME -->
+{% endblock %}

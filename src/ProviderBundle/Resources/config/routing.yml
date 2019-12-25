@@ -1,0 +1,38 @@
+provider_homepage:
+    path:     /
+    defaults: { _controller: ProviderBundle:Default:index }
+provider_searchjob:
+    path:     /searchjob
+    defaults: { _controller: ProviderBundle:SearchJob:displayJob }
+provider_confirmjob:
+    path:     /confirmjob/{id}
+    defaults: { _controller: ProviderBundle:SearchJob:confirmJob}
+provider_jobrequests:
+    path:     /jobrequests
+    defaults: { _controller: ProviderBundle:SearchJob:jobrequests}
+provider_canceljob:
+        path:     /canceljob/{id}
+        defaults: { _controller: ProviderBundle:SearchJob:canceljob}
+provider_profilepage:
+    path:     /profilepage
+    defaults: { _controller: ProviderBundle:SearchJob:profile}
+provider_setImagepage:
+    path:     /setImage
+    defaults: { _controller: ProviderBundle:SearchJob:setImage}
+
+provider_addAd:
+    path:     /addAd
+    defaults: { _controller: ProviderBundle:Ads:addAd }
+
+provider_showAd:
+    path:     /showMyAds
+    defaults: { _controller: ProviderBundle:Ads:showMyAds }
+
+provider_delete:
+    path:     /deleteAd{ad_id}
+    defaults: { _controller: ProviderBundle:Ads:deleteAd }
+
+provider_update:
+    path:     /updateAd{ad_id}
+    defaults: { _controller: ProviderBundle:Ads:updateAd }
+

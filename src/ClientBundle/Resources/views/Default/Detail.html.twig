@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+    {% block header %}
+
+        <div id="header">
+            <div class="container">
+                <div class="pull-left">
+                    <!-- Logo -->
+                    <div class="header-logo">
+                        <a class="logo" href="#">
+                            {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                        </a>
+                    </div>
+
+                </div>
+                <div class="pull-right">
+                    <a href="{{ path('fos_user_security_logout') }}"><button type="button" class="btn btn-primary">Logout</button></a>
+                </div>
+            </div>
+
+            <!-- header -->
+        </div>
+        <!-- container -->
+    {% endblock %}
+    {% block body %}
+        <div id="navigation">
+            <!-- container -->
+            <div class="container">
+                <div id="responsive-nav">
+                    <!-- category nav -->
+                    <div class="category-nav">
+                        <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                        <ul class="category-list">
+                            <li class="dropdown side-dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ask for a service<i class="fa fa-angle-right"></i></a>
+                                <div class="custom-menu">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <ul class="list-links">
+                                                <li>
+                                                    <h3 class="list-links-title">Option</h3></li>
+                                                <li><a href="{{path('client_addAskService')}}">Add a request</a></li>
+                                                <li><a href="{{path('client_displayservice')}}">My request</a></li>
+                                            </ul>
+                                            <hr class="hidden-md hidden-lg">
+                                        </div>
+
+                                    </div>
+                                    <div class="row hidden-sm hidden-xs">
+                                        <div class="col-md-12">
+                                            <hr>
+                                            <a class="banner banner-1" href="#">
+                                                <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                                <div class="banner-caption text-center">
+                                                    <h2 class="white-color">NEW COLLECTION</h2>
+                                                    <h3 class="white-color font-weak">HOT DEAL</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="#">Forum</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- /category nav -->
+
+                    <!-- menu nav -->
+                    <div class="menu-nav">
+                        <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                        <ul class="menu-list">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Contact us</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- menu nav -->
+
+                </div>
+            </div>
+            <!-- /container -->
+            {#    </div>#}
+            {#    <!-- /NAVIGATION -->#}
+        </div>
+        <div class="table">
+            <!-- HOME -->
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in Service %}
+                <tr>
+                    <td>{{ i.category.name}}</td>
+                    <td>{{ i.name}}</td>
+
+                    <td>{{ i.category.description }}</td>
+                    <td>
+                        {% for s in range(1,i.note)   %}
+                            <i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ path('client_showRating',{'id':i.service_id}) }}">   <button type="button"  name="id_service" class="btn btn-primary" >
+                          Rate
+                            </button></a>
+
+
+                        {% endfor %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <script>
+            $('#datepicker').datepicker({
+                uiLibrary: 'bootstrap4'
+            });
+        </script>
+        <style>
+            .askService{
+                margin-top: 10%;
+                margin-bottom: 5%;
+                width: 20%;
+            }
+        </style>
+
+
+        <!-- Modal -->
+        <script>
+            jQuery(document).ready(function($){
+
+                $(".btnrating").on('click',(function(e) {
+                    var previous_value = $("#selected_rating").val();
+                    var selected_value = $(this).attr("data-attr");
+                    fieldname.value=selected_value
+
+                    $("#selected_rating").val(selected_value);
+                    $(".selected-rating").empty();
+                    $(".selected-rating").html(selected_value);
+                    for (i = 1; i <= selected_value; ++i) {
+                        $("#rating-star-"+i).toggleClass('btn-warning');
+                        $("#rating-star-"+i).toggleClass('btn-default');
+
+                    }
+
+                    for (ix = 1; ix <= previous_value; ++ix) {
+                        $("#rating-star-"+ix).toggleClass('btn-warning');
+                        $("#rating-star-"+ix).toggleClass('btn-default');
+                    }
+
+                }));
+
+
+            });
+
+
+
+
+
+        </script>
+
+        <style>
+            .table{
+                margin-top: 8pc;
+                margin-right: 5pc;
+                margin-left: 7pc;
+            }
+        </style>
+
+    {% endblock %}

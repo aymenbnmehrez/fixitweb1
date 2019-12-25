@@ -1,0 +1,207 @@
+{#{% extends 'base.html.twig' %}#}
+{#{% block header %}#}
+
+{#    <div id="header">#}
+{#        <div class="container">#}
+{#            <div class="pull-left">#}
+{#                <!-- Logo -->#}
+{#                <div class="header-logo">#}
+{#                    <a class="logo" href="#">#}
+{#                        #}{#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+{#                    </a>#}
+{#                </div>#}
+
+{#            </div>#}
+{#            <div class="pull-right">#}
+{#                <a href="/fixit/web/app_dev.php/logout"><button type="button" class="btn btn-primary">Logout</button></a>#}
+{#            </div>#}
+{#        </div>#}
+
+{#        <!-- header -->#}
+{#    </div>#}
+{#    <!-- container -->#}
+{#{% endblock %}#}
+{#{% block body %}#}
+{#    <div id="navigation">#}
+{#        <!-- container -->#}
+{#        <div class="container">#}
+{#            <div id="responsive-nav">#}
+{#                <!-- category nav -->#}
+{#                <div class="category-nav">#}
+{#                    <span class="category-header">Menu <i class="fa fa-list"></i></span>#}
+{#                    <ul class="category-list">#}
+{#                        <li class="dropdown side-dropdown">#}
+{#                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ask for a service<i class="fa fa-angle-right"></i></a>#}
+{#                            <div class="custom-menu">#}
+{#                                <div class="row">#}
+{#                                    <div class="col-md-4">#}
+{#                                        <ul class="list-links">#}
+{#                                            <li>#}
+{#                                                <h3 class="list-links-title">Option</h3></li>#}
+{#                                            <li><a href="{{path('client_addAskService')}}">Add a request</a></li>#}
+{#                                            <li><a href="{{path('client_displayservice')}}">My request</a></li>#}
+{#                                        </ul>#}
+{#                                        <hr class="hidden-md hidden-lg">#}
+{#                                    </div>#}
+
+{#                                </div>#}
+{#                                <div class="row hidden-sm hidden-xs">#}
+{#                                    <div class="col-md-12">#}
+{#                                        <hr>#}
+{#                                        <a class="banner banner-1" href="#">#}
+{#                                            <img src={{asset('fixit/img/banner05.jpg')}} alt="">#}
+{#                                            <div class="banner-caption text-center">#}
+{#                                                <h2 class="white-color">NEW COLLECTION</h2>#}
+{#                                                <h3 class="white-color font-weak">HOT DEAL</h3>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </li>#}
+{#                        <li><a href="#">Forum</a></li>#}
+
+{#                    </ul>#}
+{#                </div>#}
+{#                <!-- /category nav -->#}
+
+{#                <!-- menu nav -->#}
+{#                <div class="menu-nav">#}
+{#                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>#}
+{#                    <ul class="menu-list">#}
+{#                        <li><a href="#">Home</a></li>#}
+{#                        <li><a href="#">About us</a></li>#}
+{#                        <li><a href="#">Contact us</a></li>#}
+
+{#                    </ul>#}
+{#                </div>#}
+{#                <!-- menu nav -->#}
+
+{#            </div>#}
+{#        </div>#}
+{#        <!-- /container -->#}
+{#        #}{#    </div>#}
+{#        #}{#    <!-- /NAVIGATION -->#}
+{#    </div>#}
+{#<div class="forum">#}
+
+{#    <table class="table table-hover">#}
+{#        <thead>#}
+{#        <tr>#}
+{#            <th scope="col">publisher</th>#}
+{#            <th scope="col">comment</th>#}
+{#            <th scope="col">date</th>#}
+
+
+{#        </tr>#}
+{#        </thead>#}
+{#        {% for i in C %}#}
+{#        <tbody>#}
+{#        <tr>#}
+{#            <th scope="col"> {{ i.user.first_name~' '~i.user.last_name }}</th>#}
+{#            <th scope="col">{{ i.title }}</th>#}
+{#            <th scope="col">  {{ i.comment }}</th>#}
+{#            <th scope="col">              {{ i.dateComment|date('Y-m-d H:i:s') }}#}
+{#            </th>#}
+
+
+
+{#            <th scope="col"><a href="{{path('admin_deleteComment',{'id':i.id})}}"> <button class="btn btn-danger btn-lg addpost"><span class="glyphicon glyphicon-trash" ></span>#}
+{#                        Delete     </button></a></th>#}
+{#        </tr>#}
+
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+{#</div>#}
+
+
+{#<style>#}
+{#    .forum{#}
+{#        margin-top: 10%;#}
+{#        margin-left: 20%;#}
+{#        margin-right: 20%;#}
+
+{#    }#}
+{#</style>#}
+{#    <!-- HOME -->#}
+
+{#    <!-- /HOME -->#}
+{#{% endblock %}#}
+
+
+{% extends 'admin.html.twig' %}
+
+    {% block content %}
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <body>
+
+
+
+
+                <div class="row tab">
+                    <div class="col-md-12">
+                        <!-- Advanced Tables -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading ">
+                                Forum Pubications
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover " id="dataTables-example">
+
+                                        <thead>
+                                        <tr>
+                                            <th>publisher</th>
+                                            <th>Content</th>
+                                            <th>Date</th>
+                                            <th></th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in C %}
+                                            <tr class="odd gradeX">
+                                                <td>{{ i.user.first_name~' '~i.user.last_name }}</td>
+                                                <td>{{ i.comment }}</td>
+                                                <td>{{ i.dateComment|date('Y-m-d H:i:s') }}</td>
+                                                <td><a href="{{path('admin_deleteComment',{'id':i.id})}}"> <button class="btn btn-danger btn-lg addpost"><span class="glyphicon glyphicon-trash" ></span>Delete </button></a></td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--End Advanced Tables -->
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <script src="{{ asset('Admin/js/jquery-1.10.2.js') }}"></script>
+                <!-- BOOTSTRAP SCRIPTS -->
+                <script src="{{ asset('Admin/js/bootstrap.min.js') }}"></script>
+                <!-- METISMENU SCRIPTS -->
+                <script src="{{ asset('Admin/js/jquery.metisMenu.js') }}"></script>
+                <!-- DATA TABLE SCRIPTS -->
+                <script src="{{ asset('Admin/js/dataTables/jquery.dataTables.js') }}"></script>
+                <script src="{{ asset('Admin/js/dataTables/dataTables.bootstrap.js') }}"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('#dataTables-example').dataTable();
+                    });
+                </script>
+
+                <!-- CUSTOM SCRIPTS -->
+                <script src="{{ asset('Admin/js/custom.js') }}"></script>
+
+                </body>
+            </div></div>
+    {% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'admin.html.twig' %}
+
+        {% block content %}
+        <script>
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("recherche");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("recherchetable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Ads</h2>
+                        <h5>Welcome Admin , Love to see you back, here you can check all Ads !! </h5>
+                        <hr />
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <hr/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Advanced Tables -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                All Ads
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;margin: 0px 0px 0px; margin: auto">
+                                        <input type="text" name="table_search" id="recherche" onkeyup="myFunction()" class="form-control float-right" placeholder="Search">
+                                    </div>
+                                </div>
+                                <div id="recherchetable" class="table-responsive" >
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Availability</th>
+                                            <th>Description</th>
+                                            <th>Published_at</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in ads %}
+                                        <tr class="odd gradeX">
+                                            <td>{{ i.name }}</td>
+                                            <td>{{ i.availability | date('y/m/d') }}</td>
+                                            <td>{{ i.description }}</td>
+                                            <td>{{ i.getPublishedAt() | date }}</td>
+                                            <td><a href="{{ path('admin_deletead',{'ad_id':i.getAdid()})}}"><button class="btn btn-danger btn-lg  " > <span class="glyphicon glyphicon-trash" ></span> >delete</button></a></td>
+                                        </tr>
+
+
+                                    {% endfor %}
+
+                                    </tbody>
+                                        <div class="navigation">
+                                            {{ knp_pagination_render(ads) }}
+                                        </div>
+                                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

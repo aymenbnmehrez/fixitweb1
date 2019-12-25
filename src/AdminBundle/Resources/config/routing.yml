@@ -1,0 +1,37 @@
+admin_homepage1:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+admin_forum:
+    path:     /forum
+    defaults: { _controller: AdminBundle:Post:list }
+admin_showComment:
+    path:     /showComment/{id}
+    defaults: { _controller: AdminBundle:Comment:list }
+admin_deleteComment:
+    path:     /deleteComment/{id}
+    defaults: { _controller: AdminBundle:Comment:deleteComment }
+admin_deletePost:
+    path:     /deletePost/{id}
+    defaults: { _controller: AdminBundle:Post:deletePost }
+show_ticket:
+    path:     /show
+    defaults: { _controller: AdminBundle:Ticket:showTicket }
+archive_ticket:
+    path:     /arch/{id}
+    defaults: { _controller: AdminBundle:Ticket:ArchiveTicket }
+Send_Email:
+    path:     /list/{id}
+    defaults: { _controller: AdminBundle:Ticket:List }
+Add_Email:
+    path:     /treat/{id}
+    defaults: { _controller: AdminBundle:Ticket:Treat }
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Ticket:showTicket }
+Delete_categ:
+    path:     /delete/{id}
+    defaults: { _controller: AdminBundle:Categoryt:delete }
+admin_pdf:
+    path:     /pdf
+    defaults: { _controller: AdminBundle:Post:pdf }
+

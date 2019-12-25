@@ -1,0 +1,327 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a class="logo" href="#">
+                        {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                    </a>
+                </div>
+
+            </div>
+            <div class="pull-right">
+                <a href="/fixit/web/app_dev.php/logout"><button type="button" class="btn btn-primary">Logout</button></a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+
+    <!-- link of map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="crossorigin="" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="crossorigin=""></script>
+    <script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script type='text/javascript' src='https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js'></script>
+    <style type="text/css">
+        #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+            height:200px;
+            width: 600px;
+        }
+    </style>
+    <!-- /link of map -->
+
+    <div id="navigation">
+        <!-- container -->
+        <div class="container">
+            <div id="responsive-nav">
+                <!-- category nav -->
+                <div class="category-nav">
+                    <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                    <ul class="category-list">
+                        <li class="dropdown side-dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ad<i class="fa fa-angle-right"></i></a>
+                            <div class="custom-menu">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ul class="list-links">
+                                            <li>
+                                                <h3 class="list-links-title">Option</h3></li>
+                                            <li><a href="{{ path('provider_addAd') }}">Add an Ad</a></li>
+                                            <li><a href="{{ path('provider_showAd') }}">My Ads</a></li>
+                                        </ul>
+                                        <hr class="hidden-md hidden-lg">
+                                    </div>
+
+                                </div>
+                                <div class="row hidden-sm hidden-xs">
+                                    <div class="col-md-12">
+                                        <hr>
+                                        <a class="banner banner-1" href="#">
+                                            <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                            <div class="banner-caption text-center">
+                                                <h2 class="white-color">NEW COLLECTION</h2>
+                                                <h3 class="white-color font-weak">HOT DEAL</h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="#">Search for a job</a></li>
+                        <li><a href="#">Forum</a></li>
+
+                    </ul>
+                </div>
+                <!-- /category nav -->
+                <div class="menu-nav">
+                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                    <ul class="menu-list">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact us</a></li>
+
+                    </ul>
+                </div>
+                <!-- menu nav -->
+                <!-- menu nav -->
+            </div>
+        </div>
+        <!-- /container -->
+        {#    </div>#}
+        {#    <!-- /NAVIGATION -->#}
+    </div>
+
+    <div id="home">
+        <!-- container -->
+        <div class="container">
+            <!-- home wrap -->
+            <div class="home-wrap">
+                <!-- home slick -->
+                {% block content %}
+                  <center><h1><span class="badge badge-pill badge-light">Add an Ad :</span></h1></center>
+                    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+                    {{ form_start(form) }}
+                    <div class="wrap-input2 validate-input " data-validate="Name is required">
+                        <h2><span class="badge badge-pill badge-light">Title :</span></h2>
+                        {{ form_widget(form.name,{'attr': {'class': 'input2'}}) }}
+                        <span class="focus-input2" data-placeholder=""></span>
+                    </div>
+
+                    {{ form_widget(form.availability,{'attr': {'class': 'input2'}})}}<br><br>
+
+                    <div class="wrap-input2 validate-input " data-validate="Name is required">
+                    <h2><span class="badge badge-pill badge-light">Description :</span></h2>
+                    {{ form_widget(form.description,{'attr': {'class': 'input2'}}) }}
+                    <span class="focus-input2" data-placeholder=""></span>
+                </div>
+{#                    Availability:#}
+{#                    {{ form_widget(form.availability) }}</Br>#}
+{#                    Description:#}
+{#                    {{ form_widget(form.description) }}</Br>#}
+                    <h2><span class="badge badge-pill badge-light">Your Location :</span></h2>
+                    {{ form_widget(form.location, {'id':"lat",'attr': {'class': 'input2'}})}}</br>
+
+                    <!-- script of map -->
+                    <script type="text/javascript">
+                        var theme = 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png';
+                        var lat = 8.619543;
+                        var lon = 0.82;
+                        var alt =481;
+                        var macarte = null;
+                        //var trace = new Array();
+                        var i = 0;
+                        //var marker1;
+                        var markerClusters; // Servira à stocker les groupes de marqueurs
+                        var popup = L.popup();
+                        var mark =L.marker();
+                        function initMap(){
+                            // Nous définissons le dossier qui contiendra les marqueurs
+                            //var iconBase = 'img';
+                            // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
+                            macarte = L.map('map').setView([lat, lon], 5);
+                            // markerClusters = L.markerClusterGroup; // Nous initialisons les groupes de marqueurs
+                            // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
+                            L.tileLayer(theme, {
+                                // Il est toujours bien de laisser le lien vers la source des données
+                                //attribution: 'données © OpenStreetMap/ODbL - rendu OSM France',
+                                minZoom: 1,
+                                maxZoom: 20
+                            }).addTo(macarte);
+                            macarte.on('click', onMapClick);}
+                        function onMapClick(e) {
+                            popup
+                                .setLatLng(e.latlng)
+                                .setContent("You clicked the map at " + e.latlng.toString())
+                                .openOn(macarte);
+
+                            mark.setLatLng(e.latlng).addTo(macarte);
+
+                            var str = e.latlng.toString();
+                            var l =str.indexOf("(")+1;
+                            var r = str.indexOf(")")-l;
+                            var res = str.substr(l, r).trim();
+
+                            document.getElementById("lat").value = res;
+                        }
+                        $(document).ready(function(){
+                            initMap();});
+                    </script>
+
+                    <!-- /script of map -->
+
+                    <!-- display of map -->
+                    <center>
+                    <table>
+                        <tr>
+
+                            <td>
+                                <div  id="map"  >
+                                    <!-- Ici s'affichera la carte -->
+                                </div >
+                            </td>
+
+                        </tr>
+
+                    </table>
+                    </center>
+                    <!-- /display of map -->
+                    <br>
+                     <br>
+                    <h2><span class="badge badge-pill badge-light">Image :</span></h2>
+                    {{ form_widget(form.image) }}</Br>
+
+                    <br>
+                    <h2><span class="badge badge-pill badge-light">Captcha :</span></h2>
+                  <center>{{ form_widget(form.captcha)}}</br></center>
+
+                    {{ form_widget(form.save,{'attr': {'class': 'btn btn-primary btn-lg save'}}) }}</Br>
+                    {{ form_end(form) }}
+
+
+                {% endblock %}
+                <!-- /home slick -->
+            </div>
+            <!-- /home wrap -->
+        </div>
+        <!-- /container -->
+    </div>
+<style>
+    .save{
+        margin-left: 45%;
+
+    }
+</style>
+
+{% endblock %}
+{% block footer %}
+    <div class="fot">
+            <footer id="footer" class="section section-grey">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <!-- footer widget -->
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="footer">
+                                <!-- footer logo -->
+                                <div class="footer-logo">
+                                    <a class="logo" href="#">
+                                        <img src="./img/logo.png" alt="">
+                                    </a>
+                                </div>
+                                <!-- /footer logo -->
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+
+                                <!-- footer social -->
+                                <ul class="footer-social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                </ul>
+                                <!-- /footer social -->
+                            </div>
+                        </div>
+                        <!-- /footer widget -->
+
+                        <!-- footer widget -->
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-header">My Account</h3>
+                                <ul class="list-links">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">My Wishlist</a></li>
+                                    <li><a href="#">Compare</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="#">Login</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /footer widget -->
+
+                        <div class="clearfix visible-sm visible-xs"></div>
+
+                        <!-- footer widget -->
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-header">Customer Service</h3>
+                                <ul class="list-links">
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Shiping & Return</a></li>
+                                    <li><a href="#">Shiping Guide</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /footer widget -->
+
+                        <!-- footer subscribe -->
+                        <div class="col-md-3 col-sm-6 col-xs-6">
+                            <div class="footer">
+                                <h3 class="footer-header">Stay Connected</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                                <form>
+                                    <div class="form-group">
+                                        <input class="input" placeholder="Enter Email Address">
+                                    </div>
+                                    <button class="primary-btn">Join Newslatter</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /footer subscribe -->
+                    </div>
+                    <!-- /row -->
+                    <hr>
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center">
+                            <!-- footer copyright -->
+                            <div class="footer-copyright">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </div>
+                            <!-- /footer copyright -->
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /container -->
+            </footer>
+    </div>
+    <style>
+        .fot{
+            margin-top: 10%;
+        }
+    </style>
+{% endblock %}

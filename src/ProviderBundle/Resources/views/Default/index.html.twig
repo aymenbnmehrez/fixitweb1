@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+
+    <div id="header">
+        <div class="container">
+            <div class="pull-left">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a class="logo" href="#">
+                        {#                        <img src={{asset('fixit/img/s.png')}} alt="">#}
+                    </a>
+                </div>
+
+            </div>
+            <div class="pull-right">
+                <a href="/fixit/web/app_dev.php/logout"><button class="btn btn-primary btn-lg  "  > <span class="glyphicon glyphicon-log-out" ></span> Logout</button></a>
+            </div>
+        </div>
+
+        <!-- header -->
+    </div>
+    <!-- container -->
+{% endblock %}
+{% block body %}
+    <div id="navigation">
+        <!-- container -->
+        <div class="container">
+            <div id="responsive-nav">
+                <!-- category nav -->
+                <div class="category-nav">
+                    <span class="category-header">Menu <i class="fa fa-list"></i></span>
+                    <ul class="category-list">
+                        <li class="dropdown side-dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ad<i class="fa fa-angle-right"></i></a>
+                            <div class="custom-menu">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <ul class="list-links">
+                                            <li>
+                                                <h3 class="list-links-title">Option</h3></li>
+                                            <li><a href="{{path('provider_addAd')}}">Add an ad</a></li>
+                                            <li><a href="{{path('provider_showAd')}}">My Ads</a></li>
+                                        </ul>
+                                        <hr class="hidden-md hidden-lg">
+                                    </div>
+
+                                </div>
+                                <div class="row hidden-sm hidden-xs">
+                                    <div class="col-md-12">
+                                        <hr>
+                                        <a class="banner banner-1" href="#">
+                                            <img src={{asset('fixit/img/banner05.jpg')}} alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li><a href="{{path('provider_searchjob')}}">Search for a job</a></li>
+                        <li><a href="{{path('provider_jobrequests')}}">My job requests</a></li>
+                        <li><a href="{{path('client_forum')}}">Forum</a></li>
+
+                    </ul>
+                </div>
+                <!-- /category nav -->
+                <div class="menu-nav">
+                    <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
+                    <ul class="menu-list">
+                        <li><a href="{{path('fixit_homepage')}}">Home</a></li>
+                        <li><a href="{{path('provider_profilepage')}}">Profile</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Contact us</a></li>
+
+                    </ul>
+                </div>
+                <!-- menu nav -->
+                <!-- menu nav -->
+            </div>
+        </div>
+        <!-- /container -->
+        {#    </div>#}
+        {#    <!-- /NAVIGATION -->#}
+    </div>
+
+    <!-- HOME -->
+    <div id="home">
+        <!-- container -->
+        <div class="container">
+            <!-- home wrap -->
+            <div class="home-wrap">
+                <!-- home slick -->
+                <div id="home-slick">
+                    <!-- banner -->
+                    <div class="banner banner-1">
+                        <img src={{asset('fixit/img/plumbing.jpg')}} alt="">
+                        <div class="banner-caption text-center">
+                        </div>
+                    </div>
+                    <!-- /banner -->
+
+                    <!-- banner -->
+                    <div class="banner banner-1">
+                        <img src={{asset('fixit/img/babysitter.jpg')}} alt="">
+                        <div class="banner-caption">
+                            <h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
+                            <button class="primary-btn">Shop Now</button>
+                        </div>
+                    </div>
+                    <!-- /banner -->
+
+                    <!-- banner -->
+                    <div class="banner banner-1">
+                        <img src={{asset('fixit/img/menuisier.jpg')}} alt="">
+                        <div class="banner-caption">
+                            <h1 class="white-color">New Product <span>Collection</span></h1>
+                            <button class="primary-btn">Shop Now</button>
+                        </div>
+                    </div>
+                    <!-- /banner -->
+                </div>
+                <!-- /home slick -->
+            </div>
+            <!-- /home wrap -->
+        </div>
+        <!-- /container -->
+    </div>
+
+    <!-- /HOME -->
+{% endblock %}

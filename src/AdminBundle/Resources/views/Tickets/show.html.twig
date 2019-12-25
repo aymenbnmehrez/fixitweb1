@@ -1,0 +1,133 @@
+{% extends 'admin.html.twig' %}
+
+    {% block content %}
+<div id="page-wrapper" >
+                <div id="page-inner">
+        <body>
+        <div class="row">
+            <div class="col-md-9">
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <hr />
+
+
+
+                        <!--    Hover Rows  -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Motives
+                            </div>
+                            {{ form_start(f) }}<div class="input-group">
+                            {{ form_widget(f.categoryName, {'attr': {'class': 'form-control input-sm','placeholder':'Add a new Claim category here ...','id': 'btn-input','type':'text'}}) }}
+                                <span class="input-group-btn">
+                            {{ form_widget(f.Add, {'attr': {'class': 'btn btn-primary','placeholder':'Add a new Claim category here ...','id': 'btn-input','type':'button'}}) }}
+                                </span></div>{{ form_end(f) }}
+
+
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Categorys</th>
+
+                                            <th></th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+
+                                            {% for r in categ %}
+                                            <td>{{r.categoryName}}</td>
+
+                                            <td class="center">
+                                                <a href="{{ path('Delete_categ',{'id': r.id}) }}" type="button" class="btn btn-primary">Delete</a>
+                                               </td>
+                                        </tr>
+                                            {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                <!-- Advanced Tables -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
+                                <div class="panel-heading">Claims</div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                                <thead>
+                                <tr>
+                                    <th>Sender</th>
+                                    <th>Motive</th>
+                                    <th>Sent On</th>
+                                    <th>Status</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for i in listTicket %}
+                                    {% if i.status!='Archived' %}
+                                    <tr class="odd gradeX">
+                                        <td>{{i.user}}</td>
+                                        <td>{{i.categoryt.categoryName}}</td>
+                                        <td>{{i.dateTicket|date}}</td>
+                                        <td class="center">
+                                            {% if i.status=='Not Treated' %} <a href="{{ path('Send_Email', {'id': i.id}) }}" type="button" class="btn btn-danger">Treat</a>
+                                            {% elseif i.status=='Treated' %}<a href="{{ path('archive_ticket',{'id':i.id}) }}" type="button" class="btn btn-success" >Archive</a>
+                                            {% endif %}</td>
+
+
+                                    </tr>
+                                    {% elseif i.status=='Archived' %}
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <!-- /. PAGE WRAPPER  -->
+        <!-- /. WRAPPER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="{{ asset('Admin/js/jquery-1.10.2.js') }}"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="{{ asset('Admin/js/bootstrap.min.js') }}"></script>
+        <!-- METISMENU SCRIPTS -->
+        <script src="{{ asset('Admin/js/jquery.metisMenu.js') }}"></script>
+        <!-- DATA TABLE SCRIPTS -->
+        <script src="{{ asset('Admin/js/dataTables/jquery.dataTables.js') }}"></script>
+        <script src="{{ asset('Admin/js/dataTables/dataTables.bootstrap.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+        </script>
+
+        <!-- CUSTOM SCRIPTS -->
+        <script src="{{ asset('Admin/js/custom.js') }}"></script>
+
+        </body>
+                </div></div>
+    {% endblock %}
+
