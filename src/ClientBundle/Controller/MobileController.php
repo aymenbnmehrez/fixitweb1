@@ -27,7 +27,7 @@ class MobileController extends Controller
         });
         $normalizers = array($normalizer);
         $serializer = new Serializer($normalizers, $encoders);
-//    $serializer=new Serializer([new ObjectNormalizer()]);
+//    $serializer=new Serializer([new ObjectNormalizer()]);lll
     $formatted=$serializer->normalize($tab);
     return new JsonResponse($formatted);
 }
