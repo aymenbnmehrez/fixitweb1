@@ -62,26 +62,26 @@ class Post
     {
         return $this->title;
     }
-    /**
-     * @ORM\OneToMany(targetEntity="Comments",mappedBy="Post")
-     */
-    private $commentss;
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getCommentss()
-    {
-        return $this->commentss;
-    }
-
-    /**
-     * @param ArrayCollection $commentss
-     */
-    public function setCommentss($commentss)
-    {
-        $this->commentss = $commentss;
-    }
+//    /**
+//     * @ORM\OneToMany(targetEntity="Comments",mappedBy="Post")
+//     */
+//    private $commentss;
+//
+//    /**
+//     * @return ArrayCollection
+//     */
+//    public function getCommentss()
+//    {
+//        return $this->commentss;
+//    }
+//
+//    /**
+//     * @param ArrayCollection $commentss
+//     */
+//    public function setCommentss($commentss)
+//    {
+//        $this->commentss = $commentss;
+//    }
     /**
      * @param mixed $title
      */
@@ -141,7 +141,7 @@ class Post
         $this->user = $user;
     }
     public function  __construct(){
-        $this->commentss=new ArrayCollection();
+//        $this->commentss=new ArrayCollection();
         $this->post_date = new DateTime();
 
     }
