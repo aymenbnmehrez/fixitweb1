@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
+use \UserBundle\Entity\User;
 
 
 class MobileController extends Controller
@@ -44,5 +45,37 @@ class MobileController extends Controller
         $serializer=new Serializer([new ObjectNormalizer()]);
         $formatted=$serializer->normalize($askService);
         return new JsonResponse($formatted);
+    }
+//auth
+    public function loginAction($username)
+    {
+        $password='azerty123';
+        $user_manager = $this->get('fos_user.user_manager');
+        $factory = $this->get('security.encoder_factory');
+        $user = $user_manager->findUserByUsername($username);
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+// Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $normalizers = array($normalizer);
+        $encoder = $factory->getEncoder($user);
+        $users = $this->getDoctrine()->getRepository(User::class)->findBy(array('username'=>$username));
+        $bool = ($encoder->isPasswordValid($user->getPassword(),$password,$user->getSalt())) ? "true" : "false";
+        if($bool == "true" )
+        {
+            $serializer = new Serializer($normalizers, $encoders);
+            $formatted = $serializer->normalize($users);
+            return new JsonResponse($formatted);
+        }
+        else
+        {
+            $serializer = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serializer->normalize(false);
+            return new JsonResponse($formatted);
+        }
     }
 }

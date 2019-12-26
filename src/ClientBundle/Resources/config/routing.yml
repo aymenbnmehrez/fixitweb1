@@ -95,4 +95,8 @@ client_mobileAddAskService:
     path:     /addAskService
     defaults: { _controller: ClientBundle:Mobile:addAskService }
 
+client_isAuth:
+    path:     /login/{username}
+    defaults: { _controller: ClientBundle:Mobile:login }
+
 

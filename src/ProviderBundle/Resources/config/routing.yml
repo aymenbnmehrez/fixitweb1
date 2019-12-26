@@ -11,8 +11,8 @@ provider_jobrequests:
     path:     /jobrequests
     defaults: { _controller: ProviderBundle:SearchJob:jobrequests}
 provider_canceljob:
-        path:     /canceljob/{id}
-        defaults: { _controller: ProviderBundle:SearchJob:canceljob}
+    path:     /canceljob/{id}
+    defaults: { _controller: ProviderBundle:SearchJob:canceljob}
 provider_profilepage:
     path:     /profilepage
     defaults: { _controller: ProviderBundle:SearchJob:profile}
@@ -36,3 +36,6 @@ provider_update:
     path:     /updateAd{ad_id}
     defaults: { _controller: ProviderBundle:Ads:updateAd }
 
+provider_mobiledisplayAds:
+    path:     /displayMobileAds
+    defaults: { _controller: ProviderBundle:MobileAds:displayMobileAds }
