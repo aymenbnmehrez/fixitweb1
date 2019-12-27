@@ -35,7 +35,3 @@ provider_delete:
 provider_update:
     path:     /updateAd{ad_id}
     defaults: { _controller: ProviderBundle:Ads:updateAd }
-
-provider_mobiledisplayAds:
-    path:     /displayMobileAds
-    defaults: { _controller: ProviderBundle:MobileAds:displayMobileAds }

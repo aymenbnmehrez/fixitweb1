@@ -104,3 +104,7 @@ client_affichmob:
 client_isAuth:
   path:     /login/{username}
   defaults: { _controller: ClientBundle:Mobile:login }
+
+client_mobiledisplayAds:
+    path:     /displayMobileAds
+    defaults: { _controller: ClientBundle:MobileAds:displayMobileAds }
