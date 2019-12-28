@@ -196,6 +196,7 @@
                             <p>{{ ad.getDescription() }}</p>
                             <div class="product-options">
                                 <ul class="size-option"></ul>
+                                <h2 class="loc">Location :</h2>
                                 <div class="mapp" id="map"  >
 
                                     <!-- Ici s'affichera la carte -->
@@ -205,9 +206,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <h2 class="product-name">Location :</h2>
                     <h3>
 
                     </h3>
@@ -226,7 +224,11 @@
 
 <style>
     .mapp{
-        margin-left: 49%;
+        margin-left: 0%;
+    }
+
+    .loc{
+        margin-top: -5%;
     }
 </style>
 {% endblock %}
