@@ -35,3 +35,6 @@ provider_delete:
 provider_update:
     path:     /updateAd{ad_id}
     defaults: { _controller: ProviderBundle:Ads:updateAd }
+proposer_service:
+    path:  /proposer
+    defaults: { _controller: ProviderBundle:Proposition:AddProposition }
