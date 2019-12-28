@@ -1,6 +1,6 @@
 <?php
 
-namespace ProviderBundle\Controller;
+namespace ClientBundle\Controller;
 
 use AppBundle\Entity\Ad;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,19 +15,16 @@ class MobileAdsController extends Controller
 {
     public function displayMobileAdsAction()
     {
-        $tabad = $this->getDoctrine()->getManager()->getRepository(Ad::class)->findAll();
+        $tab = $this->getDoctrine()->getManager()->getRepository(Ad::class)->findAll();
         $encoder = array(new XmlEncoder(), new JsonEncoder());
 
         $normalizer = new ObjectNormalizer();
         $normalizer->setCircularReferenceLimit(2);
-// Add Circular reference handler
-        $normalizer->setCircularReferenceHandler(function ($object) {
-            return $object;
-        });
+        $normalizer->setCircularReferenceHandler(function ($object) {return $object;});
         $normalizers = array($normalizer);
         $serializer = new Serializer($normalizers, $encoder);
-//    $serializer=new Serializer([new ObjectNormalizer()]);
-        $formatted=$serializer->normalize($tabad);
+//      $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($tab);
         return new JsonResponse($formatted);
     }
 
