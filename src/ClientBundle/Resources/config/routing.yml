@@ -98,9 +98,11 @@ client_mobileAddAskService:
 client_ajoutmob:
   path:     /ajoutmob
   defaults: { _controller: ClientBundle:Postmobile:ajouterMobile }
+
 client_affichmob:
   path:     /affichmob
   defaults: { _controller: ClientBundle:Postmobile:afficherMobile }
+
 client_isAuth:
-  path:     /login/{username}
+  path:     /login/{username}/{password}
   defaults: { _controller: ClientBundle:Mobile:login }

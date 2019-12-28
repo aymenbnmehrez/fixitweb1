@@ -47,9 +47,8 @@ class MobileController extends Controller
         return new JsonResponse($formatted);
     }
 //auth
-    public function loginAction($username)
+    public function loginAction($username,$password)
     {
-        $password='azerty123';
         $user_manager = $this->get('fos_user.user_manager');
         $factory = $this->get('security.encoder_factory');
         $user = $user_manager->findUserByUsername($username);
