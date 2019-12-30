@@ -107,3 +107,6 @@ client_isAuth:
 client_mobiledisplayAds:
   path:     /displayMobileAds
   defaults: { _controller: ClientBundle:MobileAds:displayMobileAds }
+category_affichmob:
+    path:     /categorymob
+    defaults: { _controller: ClientBundle:Categorymobile:afficherMobileCat }
