@@ -2,6 +2,7 @@
 
 namespace ClientBundle\Controller;
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Service;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -34,7 +35,26 @@ class CategorymobileController extends Controller
        $formatted=$serializer->normalize($tab);
        return new JsonResponse($formatted);
    }
+    public function afficheServiceMobileAction($id)
+    {
+        //$cat=$this->getDoctrine()->getRepository(Category::class)->findOneBy(['category_id'=>$id]);
 
+        $Service=$this->getDoctrine()->getRepository(Service::class)->findBy(array('category'=>$id));
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(1);
+// Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoders);
+//    $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($Service);
+        return new JsonResponse($formatted);
+
+    }
 
 
 
