@@ -134,3 +134,9 @@ service_addcateg:
 service_affichcategone:
   path:     /categ/{id}
   defaults: { _controller: ClientBundle:MobileCategoryt:showjsoncategoryt }
+service_deletecateg:
+  path:     /categ/delete/{id}
+  defaults: { _controller: ClientBundle:MobileCategoryt:delete }
+service_deleteticket:
+  path:     /ticket/delete/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:delete }

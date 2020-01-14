@@ -64,4 +64,14 @@ class MobileCategorytController extends Controller
         $formatted=$serializer->normalize($tab);
         return new JsonResponse($formatted);
     }
+    public function deleteAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $ticket = $em->getRepository(Categoryt::class)->find($id);
+        $em->remove($ticket);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($ticket);
+        return new JsonResponse($formatted);
+
+    }
 }
