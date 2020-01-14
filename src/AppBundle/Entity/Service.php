@@ -21,12 +21,12 @@ class Service
      */
     private $name;
     /**
-     * @ORM\ManyToOne(targetEntity="category",inversedBy="services")
+     * @ORM\ManyToOne(targetEntity="category",inversedBy="services",cascade={"persist","remove"})
      * @ORM\JoinColumn(name="category_id",referencedColumnName="category_id")
      */
     private $category;
     /**
-     * @ORM\Column(type="integer",nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $note;
 

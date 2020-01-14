@@ -21,7 +21,7 @@ class Proposition
      */
     private $name;
     /**
-     * @ORM\ManyToOne(targetEntity="category",inversedBy="propositions")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category",inversedBy="propositions")
      * @ORM\JoinColumn(name="category_id",referencedColumnName="category_id")
      */
     private $category;

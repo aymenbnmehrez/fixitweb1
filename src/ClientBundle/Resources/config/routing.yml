@@ -113,3 +113,12 @@ client_mobilefavorite:
 client_mobileshowfavorite:
     path:     /showFavorite/{idUser}
     defaults: { _controller: ClientBundle:MobileAds:showFavorite }
+category_affichmob:
+    path:     /categorymob
+    defaults: { _controller: ClientBundle:Categorymobile:afficherMobileCat }
+service_affichmob:
+    path:     /servicemob/{id}
+    defaults: { _controller: ClientBundle:Categorymobile:afficheServiceMobile }
+service_proposermob:
+    path:     /propsemob
+    defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
