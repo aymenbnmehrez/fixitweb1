@@ -104,9 +104,3 @@ client_affichmob:
 client_isAuth:
   path:     /login/{username}
   defaults: { _controller: ClientBundle:Mobile:login }
-client_ajoutcommob:
-    path:     /ajoutcommob
-    defaults: { _controller: ClientBundle:Commentmobile:ajoutercomMobile }
-client_affichcommob:
-    path:     /affichcommob
-    defaults: { _controller: ClientBundle:Commentmobile:affichercomMobile }
