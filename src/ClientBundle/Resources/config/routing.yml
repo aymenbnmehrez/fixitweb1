@@ -129,3 +129,27 @@ service_affichmob:
 service_proposermob:
     path:     /propsemob
     defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
+service_affichtick:
+    path:     /ticket/all
+    defaults: { _controller: ClientBundle:MobileTicket:afficherMobile}
+service_addtick:
+    path:     /ticket/add
+    defaults: { _controller: ClientBundle:MobileTicket:ajouterMobile }
+service_affichtickone:
+    path:     /ticket/{id}
+    defaults: { _controller: ClientBundle:MobileTicket:showjsonticket }
+service_affichcateg:
+  path:     /categ/all
+  defaults: { _controller: ClientBundle:MobileCategoryt:afficherMobile}
+service_addcateg:
+  path:     /categ/add
+  defaults: { _controller: ClientBundle:MobileCategoryt:ajouterMobile }
+service_affichcategone:
+  path:     /categ/{id}
+  defaults: { _controller: ClientBundle:MobileCategoryt:showjsoncategoryt }
+service_deletecateg:
+  path:     /categ/delete/{id}
+  defaults: { _controller: ClientBundle:MobileCategoryt:delete }
+service_deleteticket:
+  path:     /ticket/delete/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:delete }
