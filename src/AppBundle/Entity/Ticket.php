@@ -192,30 +192,30 @@ class Ticket
     {
         return $this->provider;
     }
-
-    /**
-     * Set idC
-     *
-     * @param integer $idC
-     *
-     * @return Ticket
-     */
-    public function setIdC($idC)
-    {
-        $this->idC = $idC;
-
-        return $this;
-    }
-
-    /**
-     * Get idC
-     *
-     * @return int
-     */
-    public function getIdC()
-    {
-        return $this->idC;
-    }
+//
+//    /**
+//     * Set idC
+//     *
+//     * @param integer $idC
+//     *
+//     * @return Ticket
+//     */
+//    public function setIdC($idC)
+//    {
+//        $this->idC = $idC;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get idC
+//     *
+//     * @return int
+//     */
+//    public function getIdC()
+//    {
+//        return $this->idC;
+//    }
 
     /**
      * Set dateTicket
