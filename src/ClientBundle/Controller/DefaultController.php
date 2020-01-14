@@ -46,7 +46,7 @@ class DefaultController extends Controller
         $ad  = $this->get('knp_paginator')->paginate(
             $ad,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,
-            1/*nbre d'éléments par page*/
+            6/*nbre d'éléments par page*/
         );
         return $this->render('@Client/Default/showAllAds.html.twig',array('ads'=>$ad));
     }
