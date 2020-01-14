@@ -21,9 +21,15 @@ use Dompdf\Options;
 
 class CommentmobileController extends Controller
 {
-   public function affichercomMobileAction()
+   public function affichercomMobileAction($id)
    {
-       $tab = $this->getDoctrine()->getManager()->getRepository(Comments::class)->findAll();
+       //$tab = $this->getDoctrine()->getManager()->getRepository(Comments::class)->findAll();
+
+       $taab = $this->getDoctrine()->getManager()->getRepository(Comments::class);
+       $tab=$taab->findBy(['idPost'=>$id]);
+
+
+
 
        $encoders = array(new XmlEncoder(), new JsonEncoder());
 

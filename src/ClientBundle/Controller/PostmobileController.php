@@ -46,6 +46,7 @@ class PostmobileController extends Controller
         $em = $this->getDoctrine()->getManager();
         $post->setTitle($request->get('title'));
         $post->setContent($request->get('content'));
+        $post->setContent($request->get('id'));
         $em->persist($post);
         $em->flush();
         $serializer=new Serializer([new ObjectNormalizer()]);
