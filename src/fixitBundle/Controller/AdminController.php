@@ -79,6 +79,7 @@ class AdminController extends Controller
         $Service = new Service();
         $form = $this->createForm(ServiceType::class, $Service);
         $form = $form->handleRequest($request);
+        $Service->setNote(2);
         if ($form->isSubmitted() and $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 

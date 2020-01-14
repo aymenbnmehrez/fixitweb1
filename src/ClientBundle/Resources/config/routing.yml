@@ -113,6 +113,9 @@ category_affichmob:
 service_affichmob:
     path:     /servicemob/{id}
     defaults: { _controller: ClientBundle:Categorymobile:afficheServiceMobile }
+service_proposermob:
+    path:     /propsemob
+    defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
 service_affichtick:
     path:     /ticket/all
     defaults: { _controller: ClientBundle:MobileTicket:afficherMobile}
