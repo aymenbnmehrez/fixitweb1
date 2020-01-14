@@ -58,24 +58,24 @@ class Comments
         $this->user = $user;
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-
-
-
-    /**
-     * @param mixed $idUser
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-    }
+//
+//    /**
+//     * @return mixed
+//     */
+//    public function getIdUser()
+//    {
+//        return $this->idUser;
+//    }
+//
+//
+//
+//    /**
+//     * @param mixed $idUser
+//     */
+//    public function setIdUser($idUser)
+//    {
+//        $this->idUser = $idUser;
+//    }
 
     /**
      * @return mixed
