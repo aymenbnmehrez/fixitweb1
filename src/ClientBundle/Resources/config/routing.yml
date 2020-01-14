@@ -107,6 +107,12 @@ client_isAuth:
 client_mobiledisplayAds:
   path:     /displayMobileAds
   defaults: { _controller: ClientBundle:MobileAds:displayMobileAds }
+client_mobilefavorite:
+    path:     /favorite
+    defaults: { _controller: ClientBundle:MobileAds:favorite }
+client_mobileshowfavorite:
+    path:     /showFavorite/{idUser}
+    defaults: { _controller: ClientBundle:MobileAds:showFavorite }
 category_affichmob:
     path:     /categorymob
     defaults: { _controller: ClientBundle:Categorymobile:afficherMobileCat }
