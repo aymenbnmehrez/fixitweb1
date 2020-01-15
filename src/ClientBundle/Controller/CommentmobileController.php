@@ -49,13 +49,29 @@ class CommentmobileController extends Controller
 
 
 
-    public function ajoutercomMobileAction(Request $request)
-    {   $comment = new Comments();
+    public function ajoutercomMobileAction($cnt,$id)
+    {
+
+
+        $idPosts = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['post_id' => $id]);
+
+        $comment = new Comments();
         $em = $this->getDoctrine()->getManager();
-        $comment->setComment($request->get('comment'));
+
+
+        $comment->setComment($cnt);
+        $comment->setIdPost($idPosts);
+
         $em->persist($comment);
         $em->flush();
-        $serializer=new Serializer([new ObjectNormalizer()]);
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+// Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers);
         $formatted=$serializer->normalize($comment);
         return new JsonResponse($formatted);
     }

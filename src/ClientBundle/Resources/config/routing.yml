@@ -153,3 +153,6 @@ service_deletecateg:
 service_deleteticket:
   path:     /ticket/delete/{id}
   defaults: { _controller: ClientBundle:MobileTicket:delete }
+client_ajouttcommob:
+  path:     /ajoutcomment/{cnt}/{id}
+  defaults: { _controller: ClientBundle:Commentmobile:ajoutercomMobile }
