@@ -94,9 +94,6 @@ client_mobiledisplay:
 client_mobileAddAskService:
     path:     /addAskService
     defaults: { _controller: ClientBundle:Mobile:addAskService }
-client_ajoutcommob:
-  path:     /ajoutmob
-  defaults: { _controller: ClientBundle:Postcommobile:ajoutercomMobile }
 
 client_affichcommob:
   path:     /affichcommob/{id}
