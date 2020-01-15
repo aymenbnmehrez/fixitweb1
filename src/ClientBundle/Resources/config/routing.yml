@@ -131,4 +131,4 @@ service_proposermob:
     defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
 client_mobiledeleteFavAds:
   path:     /deleteFavorie/{id}
-  defaults: { _controller: ClientBundle:Categorymobile:deleteAdFav }
+  defaults: { _controller: ClientBundle:MobileAds:deleteAdFav }
