@@ -88,4 +88,20 @@ class MobileAdsController extends Controller
         $formatted=$serializer->normalize($adFav);
         return new JsonResponse($formatted);
     }
+
+    public function checkAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $adFav = $em->getRepository(AdFav::class)->findBy(['idAd' => $id]);
+
+
+        $encoder = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {return $object;});
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoder);
+        $formatted=$serializer->normalize($adFav);
+        return new JsonResponse($formatted);
+    }
+
 }
