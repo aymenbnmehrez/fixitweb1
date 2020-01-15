@@ -72,4 +72,20 @@ class MobileAdsController extends Controller
 
     }
 
+    public function deleteAdFavAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $adFav = $em->getRepository(AdFav::class)->find($id);
+        $em->remove($adFav);
+        $em->flush();
+        $encoder = array(new XmlEncoder(), new JsonEncoder());
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {return $object;});
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoder);
+//      $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($adFav);
+        return new JsonResponse($formatted);
+    }
 }
