@@ -162,3 +162,9 @@ client_mobiledeleteFavAds:
 client_mobilechekFavAds:
   path:     /check/{id}
   defaults: { _controller: ClientBundle:MobileAds:check }
+provider_showAdmobile:
+  path:  /showMyAdsMobile/{idUser}
+  defaults: { _controller: ClientBundle:MobileAds:showMyAds }
+provider_mobiledeleteAds:
+  path:     /deleteAdsProv/{id}
+  defaults: { _controller: ClientBundle:MobileAds:deleteAdProv }

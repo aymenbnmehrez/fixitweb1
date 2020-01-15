@@ -104,4 +104,36 @@ class MobileAdsController extends Controller
         return new JsonResponse($formatted);
     }
 
+    public function showMyAdsAction($idUser){
+       // $user=$this->container->get('security.token_storage')->getToken()->getUser();
+        $ad=$this->getDoctrine()->getRepository(Ad::class)->findBy(['user' => $idUser]);
+        $encoder = array(new XmlEncoder(), new JsonEncoder());
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {return $object;});
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoder);
+//      $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($ad);
+        return new JsonResponse($formatted);
+    }
+
+    public function deleteAdProvAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $ad = $em->getRepository(Ad::class)->find($id);
+        $em->remove($ad);
+        $em->flush();
+        $encoder = array(new XmlEncoder(), new JsonEncoder());
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {return $object;});
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoder);
+//      $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($ad);
+        return new JsonResponse($formatted);
+    }
+
 }
