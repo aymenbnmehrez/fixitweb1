@@ -41,6 +41,12 @@ client_forum:
 client_deletePost:
     path:     /deletePost/{id}
     defaults: { _controller: ClientBundle:Post:deletePost }
+client_deletePostMobil:
+      path:     /deletePostmob/{id}
+      defaults: { _controller: ClientBundle:Postmobile:deletePostMobile }
+client_deleteCommentMobil:
+  path:     /deleteCommentmob/{id}
+  defaults: { _controller: ClientBundle:Commentmobile:deleteCommentMobile }
 client_editPost:
     path:     /editPost/{id}
     defaults: { _controller: ClientBundle:Post:editPost }
@@ -99,8 +105,8 @@ client_affichcommob:
   path:     /affichcommob/{id}
   defaults: { _controller: ClientBundle:Commentmobile:affichercomMobile }
 client_ajoutmob:
-  path:     /ajoutmob
-  defaults: { _controller: ClientBundle:Postmobile:ajouterMobile }
+  path:     /ajoutmob/{idUser}/{title}/{content}
+  defaults: { _controller: ClientBundle:Postmobile:ajouterpOSTMobile }
 
 client_affichmob:
   path:     /affichmob

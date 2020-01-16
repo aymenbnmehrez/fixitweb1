@@ -75,4 +75,23 @@ class CommentmobileController extends Controller
         $formatted=$serializer->normalize($comment);
         return new JsonResponse($formatted);
     }
+
+
+    public function deletecommentMobileAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $comment = $this->getDoctrine()->getRepository(Comments::class)->find($id);
+        $em->remove($comment);
+        $em->flush();
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers);
+        $formatted=$serializer->normalize($comment);
+        return new JsonResponse($formatted);
+    }
+
 }

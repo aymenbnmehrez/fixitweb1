@@ -41,16 +41,68 @@ class PostmobileController extends Controller
 
 
 
-    public function ajouterMobileAction(Request $request)
-    {   $post = new Post();
+//    public function ajouterMobileAction( $idUser,$title,$content)
+//    {
+//       // $idPosts = $this->getDoctrine()->getRepository(Categoryt::class)->findOneBy(['id' => $id]);
+//      //  $idUsers = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $idUser]);
+//        $post = new Post();
+//        $post->setTitle($title);
+//        $post->setContent($content);
+//        //$post->setContent($request->get('id'));
+//       // $post->setUser($idUsers);
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $em->persist($post);
+//        $em->flush();
+//        $serializer=new Serializer([new ObjectNormalizer()]);
+//        $formatted=$serializer->normalize($post);
+//        return new JsonResponse($formatted);
+//    }
+
+    public function deletePostMobileAction($id){
         $em = $this->getDoctrine()->getManager();
-        $post->setTitle($request->get('title'));
-        $post->setContent($request->get('content'));
-        $post->setContent($request->get('id'));
-        $em->persist($post);
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
+        $em->remove($post);
         $em->flush();
-        $serializer=new Serializer([new ObjectNormalizer()]);
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers);
         $formatted=$serializer->normalize($post);
         return new JsonResponse($formatted);
     }
+
+
+    public function ajouterpOSTMobileAction( $idUser,$title,$content)
+    {
+
+
+        $idUsers = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $idUser]);
+
+        $comment = new Post();
+        $em = $this->getDoctrine()->getManager();
+
+
+        $comment->setTitle($title);
+        $comment->setContent($content);
+        $comment->setUser($idUsers);
+        $em->persist($comment);
+        $em->flush();
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+// Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers);
+        $formatted=$serializer->normalize($comment);
+        return new JsonResponse($formatted);
+    }
+
+
 }
