@@ -42,7 +42,7 @@ class TicketController extends Controller
 
 
 
-    public function ListAction(Request $request,$id)
+    public function TreatAction(Request $request,$id)
     {
         $em=$this->getDoctrine()->getManager();
 
@@ -72,7 +72,7 @@ class TicketController extends Controller
                     ->setContentType('text/html')
                     ->setBody($message);
                 $this->get('mailer')->send($message);
-               // return $this->render('@Admin/Tickets/SendMail.html.twig');
+
             }
         }
         $rep=$this->getDoctrine()->getManager()->getRepository(Ticket::class)->find($id);
