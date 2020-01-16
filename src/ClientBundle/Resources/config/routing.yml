@@ -88,7 +88,7 @@ client_rating:
     methods:  POST
 
 client_mobiledisplay:
-    path:     /displayMobile/{idUser}
+    path:     /displayMobile
     defaults: { _controller: ClientBundle:Mobile:displayMobile }
 
 client_mobileAddAskService:
@@ -119,15 +119,60 @@ category_affichmob:
 service_affichmob:
     path:     /servicemob/{id}
     defaults: { _controller: ClientBundle:Categorymobile:afficheServiceMobile }
+service_affichtick:
+    path:     /ticket/all
+    defaults: { _controller: ClientBundle:MobileTicket:afficherMobile}
+service_addtick:
+    path:     /ticket/add
+    defaults: { _controller: ClientBundle:MobileTicket:ajouterMobile }
+service_affichtickone:
+    path:     /ticket/{id}
+    defaults: { _controller: ClientBundle:MobileTicket:showjsonticket }
+service_affichcateg:
+  path:     /categ/all
+  defaults: { _controller: ClientBundle:MobileCategoryt:afficherMobile}
+service_addcateg:
+  path:     /categ/add
+  defaults: { _controller: ClientBundle:MobileCategoryt:ajouterMobile }
+service_affichcategone:
+  path:     /categ/{id}
+  defaults: { _controller: ClientBundle:MobileCategoryt:showjsoncategoryt }
+service_deletecateg:
+  path:     /categ/delete/{id}
+  defaults: { _controller: ClientBundle:MobileCategoryt:delete }
+service_deleteticket:
+  path:     /ticket/delete/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:delete }
+service_affichcategoneMob:
+  path:     /afficheCat/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherCateMobile }
+service_affichTicketMob:
+  path:     /afficheCtik/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherTicketMobile }
+service_ajoutTicketMob:
+  path:     /ajoutik/{cnt}/{id}/{idUser}
+  defaults: { _controller: ClientBundle:MobileTicket:ajouterTicketMobile }
+service_affichecattMob:
+  path:     /afficheCate/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherCateNameMobile }
+client_ajouttcommob:
+  path:     /ajoutcomment/{cnt}/{id}
+  defaults: { _controller: ClientBundle:Commentmobile:ajoutercomMobile }
+client_mobiledeleteFavAds:
+  path:     /deleteFavorie/{id}
+  defaults: { _controller: ClientBundle:MobileAds:deleteAdFav }
+client_mobilechekFavAds:
+  path:     /check/{id}
+  defaults: { _controller: ClientBundle:MobileAds:check }
+provider_showAdmobile:
+  path:  /showMyAdsMobile/{idUser}
+  defaults: { _controller: ClientBundle:MobileAds:showMyAds }
+provider_mobiledeleteAds:
+  path:     /deleteAdsProv/{id}
+  defaults: { _controller: ClientBundle:MobileAds:deleteAdProv }
 service_proposermob:
-    path:     /propsemob
-    defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
-client_mobiledelete:
-  path:     /deleteMobile/{id}
-  defaults: { _controller: ClientBundle:Mobile:deleteAskServiceMobile }
-client_mobilepay:
-  path:     /payMobile/{id}
-  defaults: { _controller: ClientBundle:Mobile:payAskServiceMobile }
-client_mobileAddAskSer:
-  path:     /addAskSer/{idUser}/{desc}/{price}/{dur}/{service}/{stated}
-  defaults: { _controller: ClientBundle:Mobile:addAskServiceMobile }
+  path:     /propsemob/{cnt}/{id}
+  defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
+service_bestmob:
+  path:     /bestmob
+  defaults: { _controller: ClientBundle:Categorymobile:favoriserservicemobile }

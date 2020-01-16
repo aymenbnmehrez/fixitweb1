@@ -1,6 +1,7 @@
 <?php
 
 namespace ClientBundle\Controller;
+use AppBundle\Entity\Comments;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -18,11 +19,18 @@ use Dompdf\Options;
 
 
 
-class PostmobileController extends Controller
+class CommentmobileController extends Controller
 {
-   public function afficherMobileAction()
+   public function affichercomMobileAction($id)
    {
-       $tab = $this->getDoctrine()->getManager()->getRepository(Post::class)->findAll();
+       //$tab = $this->getDoctrine()->getManager()->getRepository(Comments::class)->findAll();
+
+       $taab = $this->getDoctrine()->getManager()->getRepository(Comments::class);
+       $tab=$taab->findBy(['idPost'=>$id]);
+
+
+
+
        $encoders = array(new XmlEncoder(), new JsonEncoder());
 
        $normalizer = new ObjectNormalizer();
@@ -41,55 +49,19 @@ class PostmobileController extends Controller
 
 
 
-//    public function ajouterMobileAction( $idUser,$title,$content)
-//    {
-//       // $idPosts = $this->getDoctrine()->getRepository(Categoryt::class)->findOneBy(['id' => $id]);
-//      //  $idUsers = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $idUser]);
-//        $post = new Post();
-//        $post->setTitle($title);
-//        $post->setContent($content);
-//        //$post->setContent($request->get('id'));
-//       // $post->setUser($idUsers);
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $em->persist($post);
-//        $em->flush();
-//        $serializer=new Serializer([new ObjectNormalizer()]);
-//        $formatted=$serializer->normalize($post);
-//        return new JsonResponse($formatted);
-//    }
-
-    public function deletePostMobileAction($id){
-        $em = $this->getDoctrine()->getManager();
-        $post = $this->getDoctrine()->getRepository(Post::class)->find($id);
-        $em->remove($post);
-        $em->flush();
-
-        $normalizer = new ObjectNormalizer();
-        $normalizer->setCircularReferenceLimit(2);
-        $normalizer->setCircularReferenceHandler(function ($object) {
-            return $object;
-        });
-        $normalizers = array($normalizer);
-        $serializer = new Serializer($normalizers);
-        $formatted=$serializer->normalize($post);
-        return new JsonResponse($formatted);
-    }
-
-
-    public function ajouterpOSTMobileAction( $idUser,$title,$content)
+    public function ajoutercomMobileAction($cnt,$id)
     {
 
 
-        $idUsers = $this->getDoctrine()->getRepository(User::class)->findOneBy(['id' => $idUser]);
+        $idPosts = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['post_id' => $id]);
 
-        $comment = new Post();
+        $comment = new Comments();
         $em = $this->getDoctrine()->getManager();
 
 
-        $comment->setTitle($title);
-        $comment->setContent($content);
-        $comment->setUser($idUsers);
+        $comment->setComment($cnt);
+        $comment->setIdPost($idPosts);
+
         $em->persist($comment);
         $em->flush();
         $normalizer = new ObjectNormalizer();
@@ -104,5 +76,22 @@ class PostmobileController extends Controller
         return new JsonResponse($formatted);
     }
 
+
+    public function deletecommentMobileAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $comment = $this->getDoctrine()->getRepository(Comments::class)->find($id);
+        $em->remove($comment);
+        $em->flush();
+
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers);
+        $formatted=$serializer->normalize($comment);
+        return new JsonResponse($formatted);
+    }
 
 }
