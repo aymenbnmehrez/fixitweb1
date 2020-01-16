@@ -107,7 +107,6 @@ client_affichcommob:
 client_ajoutmob:
   path:     /ajoutmob/{idUser}/{title}/{content}
   defaults: { _controller: ClientBundle:Postmobile:ajouterpOSTMobile }
-
 client_affichmob:
   path:     /affichmob
   defaults: { _controller: ClientBundle:Postmobile:afficherMobile }
@@ -129,9 +128,6 @@ category_affichmob:
 service_affichmob:
     path:     /servicemob/{id}
     defaults: { _controller: ClientBundle:Categorymobile:afficheServiceMobile }
-service_proposermob:
-    path:     /propsemob
-    defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
 service_affichtick:
     path:     /ticket/all
     defaults: { _controller: ClientBundle:MobileTicket:afficherMobile}
@@ -156,6 +152,36 @@ service_deletecateg:
 service_deleteticket:
   path:     /ticket/delete/{id}
   defaults: { _controller: ClientBundle:MobileTicket:delete }
+service_affichcategoneMob:
+  path:     /afficheCat/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherCateMobile }
+service_affichTicketMob:
+  path:     /afficheCtik/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherTicketMobile }
+service_ajoutTicketMob:
+  path:     /ajoutik/{cnt}/{id}/{idUser}
+  defaults: { _controller: ClientBundle:MobileTicket:ajouterTicketMobile }
+service_affichecattMob:
+  path:     /afficheCate/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherCateNameMobile }
 client_ajouttcommob:
   path:     /ajoutcomment/{cnt}/{id}
   defaults: { _controller: ClientBundle:Commentmobile:ajoutercomMobile }
+client_mobiledeleteFavAds:
+  path:     /deleteFavorie/{id}
+  defaults: { _controller: ClientBundle:MobileAds:deleteAdFav }
+client_mobilechekFavAds:
+  path:     /check/{id}
+  defaults: { _controller: ClientBundle:MobileAds:check }
+provider_showAdmobile:
+  path:  /showMyAdsMobile/{idUser}
+  defaults: { _controller: ClientBundle:MobileAds:showMyAds }
+provider_mobiledeleteAds:
+  path:     /deleteAdsProv/{id}
+  defaults: { _controller: ClientBundle:MobileAds:deleteAdProv }
+service_proposermob:
+  path:     /propsemob/{cnt}/{id}
+  defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
+service_bestmob:
+  path:     /bestmob
+  defaults: { _controller: ClientBundle:Categorymobile:favoriserservicemobile }
