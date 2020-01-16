@@ -146,3 +146,15 @@ service_deletecateg:
 service_deleteticket:
   path:     /ticket/delete/{id}
   defaults: { _controller: ClientBundle:MobileTicket:delete }
+service_affichcategoneMob:
+  path:     /afficheCat/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherCateMobile }
+service_affichTicketMob:
+  path:     /afficheCtik/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherTicketMobile }
+service_ajoutTicketMob:
+  path:     /ajoutik/{cnt}/{id}/{idUser}
+  defaults: { _controller: ClientBundle:MobileTicket:ajouterTicketMobile }
+service_affichecattMob:
+  path:     /afficheCate/{id}
+  defaults: { _controller: ClientBundle:MobileTicket:afficherCateNameMobile }
