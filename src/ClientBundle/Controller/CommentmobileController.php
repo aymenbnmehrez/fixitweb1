@@ -1,6 +1,7 @@
 <?php
 
 namespace ClientBundle\Controller;
+use AppBundle\Entity\Comments;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -18,11 +19,18 @@ use Dompdf\Options;
 
 
 
-class PostmobileController extends Controller
+class CommentmobileController extends Controller
 {
-   public function afficherMobileAction()
+   public function affichercomMobileAction($id)
    {
-       $tab = $this->getDoctrine()->getManager()->getRepository(Post::class)->findAll();
+       //$tab = $this->getDoctrine()->getManager()->getRepository(Comments::class)->findAll();
+
+       $taab = $this->getDoctrine()->getManager()->getRepository(Comments::class);
+       $tab=$taab->findBy(['idPost'=>$id]);
+
+
+
+
        $encoders = array(new XmlEncoder(), new JsonEncoder());
 
        $normalizer = new ObjectNormalizer();
@@ -41,16 +49,30 @@ class PostmobileController extends Controller
 
 
 
-    public function ajouterMobileAction(Request $request)
-    {   $post = new Post();
+    public function ajoutercomMobileAction($cnt,$id)
+    {
+
+
+        $idPosts = $this->getDoctrine()->getRepository(Post::class)->findOneBy(['post_id' => $id]);
+
+        $comment = new Comments();
         $em = $this->getDoctrine()->getManager();
-        $post->setTitle($request->get('title'));
-        $post->setContent($request->get('content'));
-        $post->setContent($request->get('id'));
-        $em->persist($post);
+
+
+        $comment->setComment($cnt);
+        $comment->setIdPost($idPosts);
+
+        $em->persist($comment);
         $em->flush();
-        $serializer=new Serializer([new ObjectNormalizer()]);
-        $formatted=$serializer->normalize($post);
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+// Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object;
+        });
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers);
+        $formatted=$serializer->normalize($comment);
         return new JsonResponse($formatted);
     }
 }
