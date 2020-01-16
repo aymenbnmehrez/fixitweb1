@@ -88,7 +88,7 @@ client_rating:
     methods:  POST
 
 client_mobiledisplay:
-    path:     /displayMobile
+    path:     /displayMobile/{idUser}
     defaults: { _controller: ClientBundle:Mobile:displayMobile }
 
 client_mobileAddAskService:
@@ -122,3 +122,12 @@ service_affichmob:
 service_proposermob:
     path:     /propsemob
     defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
+client_mobiledelete:
+  path:     /deleteMobile/{id}
+  defaults: { _controller: ClientBundle:Mobile:deleteAskServiceMobile }
+client_mobilepay:
+  path:     /payMobile/{id}
+  defaults: { _controller: ClientBundle:Mobile:payAskServiceMobile }
+client_mobileAddAskSer:
+  path:     /addAskSer/{idUser}/{desc}/{price}/{dur}/{service}/{stated}
+  defaults: { _controller: ClientBundle:Mobile:addAskServiceMobile }

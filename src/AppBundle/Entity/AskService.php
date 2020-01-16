@@ -3,6 +3,7 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
@@ -202,5 +203,9 @@ class AskService
     {
         $this->user = $user;
     }
+    public function  __construct(){
+//        $this->commentss=new ArrayCollection();
+        $this->date = new DateTime();
 
+    }
 }
