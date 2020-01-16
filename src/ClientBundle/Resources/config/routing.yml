@@ -94,13 +94,7 @@ client_mobiledisplay:
 client_mobileAddAskService:
     path:     /addAskService
     defaults: { _controller: ClientBundle:Mobile:addAskService }
-client_ajoutcommob:
-  path:     /ajoutmob
-  defaults: { _controller: ClientBundle:Postcommobile:ajoutercomMobile }
 
-client_affichcommob:
-  path:     /affichcommob/{id}
-  defaults: { _controller: ClientBundle:Commentmobile:affichercomMobile }
 client_ajoutmob:
   path:     /ajoutmob
   defaults: { _controller: ClientBundle:Postmobile:ajouterMobile }
@@ -125,9 +119,6 @@ category_affichmob:
 service_affichmob:
     path:     /servicemob/{id}
     defaults: { _controller: ClientBundle:Categorymobile:afficheServiceMobile }
-service_proposermob:
-    path:     /propsemob
-    defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
 service_affichtick:
     path:     /ticket/all
     defaults: { _controller: ClientBundle:MobileTicket:afficherMobile}
@@ -179,3 +170,9 @@ provider_showAdmobile:
 provider_mobiledeleteAds:
   path:     /deleteAdsProv/{id}
   defaults: { _controller: ClientBundle:MobileAds:deleteAdProv }
+service_proposermob:
+  path:     /propsemob/{cnt}/{id}
+  defaults: { _controller: ClientBundle:Categorymobile:AddPropositionMobile }
+service_bestmob:
+  path:     /bestmob
+  defaults: { _controller: ClientBundle:Categorymobile:favoriserservicemobile }
